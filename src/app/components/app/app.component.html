@@ -1,0 +1,36 @@
+<div>
+  <header class="container">
+    <nav class="d-flex justify-content-between">
+      <div class="col-1 ">
+        <img src="https://oborot.ru/wp-content/uploads/2018/04/otto.jpg" alt="">
+      </div>
+
+      <div *ngIf="appService.userIn">
+        <ul class="d-flex justify-content-center">
+          <li class="list-none p-2"><a class="text-decoration-none" routerLink="main">Головна</a></li>
+          <li class="list-none p-2"><a class="text-decoration-none" routerLink="tests">Тести</a></li>
+          <li class="list-none p-2"><a class="text-decoration-none" routerLink="courses">Курси</a></li>
+          <li class="list-none p-2"><a class="text-decoration-none">Про проект</a></li>
+          <li class="list-none p-2"><a class="text-decoration-none">Про нас</a></li>
+        </ul>
+      </div>
+
+      <div class="mt-2">
+        <ul *ngIf="appService.userIn == false" class="d-flex text-decoration-none col-3">
+          <li class="list-none px-2"><a class="text-decoration-none p-3" routerLink="login">Вхід</a></li>
+          <li class="list-none px-2"><a class="text-decoration-none" routerLink="registration">Регістрація</a></li>
+        </ul>
+
+        <ul *ngIf="appService.userIn == true" class="d-flex text-decoration-none col-3">
+          <li class="list-none px-2"><a class="text-decoration-none" routerLink="/"
+                                        (click)="goOut()">Вихід</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <footer></footer>
+</div>

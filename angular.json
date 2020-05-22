@@ -24,9 +24,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/card/dist/card.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/card/dist/card.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -117,8 +120,16 @@
               "devServerTarget": "Angular:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "Angular"
+    }
+  },
+  "defaultProject": "Angular",
+  "cli": {
+    "analytics": "788baca8-9359-4fec-a054-13091a3538c2"
+  }
 }
