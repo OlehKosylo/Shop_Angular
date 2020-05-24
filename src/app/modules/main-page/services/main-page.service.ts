@@ -8,6 +8,7 @@ import {CourseModel} from '../../courses/models/Course.model';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditUserInfo} from '../../profile-page/models/EditUserInfo.model';
+import {CommentModel} from '../../courses/models/Commentar.model';
 
 
 @Injectable({
@@ -39,8 +40,8 @@ export class MainPageService {
     return this.http.get<CourseModel[]>('http://localhost:8081/api/course/myList?userId=' + id);
   }
 
-  getMyCourse(id): Observable<CourseModel> {
-    return this.http.get<CourseModel>('http://localhost:8081/api/course/myCourse?courseId=' + id);
+  getMyCourse(id, userId): Observable<CourseModel> {
+    return this.http.get<CourseModel>(`http://localhost:8081/api/course/myCourse?courseId=${id}&userId=${userId}`);
   }
 
   editPhotoInProfile(id, photoURL) {
@@ -53,6 +54,14 @@ export class MainPageService {
         err => alert('Something went wrong. Please try again'));
   }
 
+  sendComment(courseId: number, inputCommentValue: string) {
+    return this.http.post<CommentModel[]>(`http://localhost:8081/api/course/setComment`,
+      {courseId, userId: this.getUserId(), text: inputCommentValue});
+  }
+
+  deleteComment(commentId: number, courseId: number, userId: number) {
+    return this.http.get<CommentModel[]>(`http://localhost:8081/api/course/deleteComment?commentId=${commentId}&courseId=${courseId}&userId=${userId}`);
+  }
 
   public getUserId(): string {
     this.userId = localStorage.getItem('userId');

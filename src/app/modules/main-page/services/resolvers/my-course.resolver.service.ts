@@ -14,6 +14,6 @@ export class MyCourseResolverService implements Resolve<CourseModel> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<CourseModel> {
-    return this.mainPageService.getMyCourse(this.mainPageService.getCourseId());
+    return this.mainPageService.getMyCourse(this.mainPageService.getCourseId(), this.mainPageService.getUserId());
   }
 }

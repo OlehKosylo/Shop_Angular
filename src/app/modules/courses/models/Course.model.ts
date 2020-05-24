@@ -1,3 +1,5 @@
+import {CommentModel} from './Commentar.model';
+
 export interface CourseModel {
   id?: number;
   title: string;
@@ -7,4 +9,5 @@ export interface CourseModel {
   genre?: string;
   downloadURL?: string;
   statusForCheckIfUserHasThisCourse?: number;
+  commentaries: CommentModel[];
 }

@@ -11,7 +11,7 @@ export class CourseResolverService implements Resolve<CourseModel> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<CourseModel> {
     const searchTerm: string = route.paramMap.get('title');
-    console.log(searchTerm + 'here');
-    return this.coursesContainerService.getCourse(searchTerm,);
+
+    return this.coursesContainerService.getCourse(searchTerm);
   }
 }
