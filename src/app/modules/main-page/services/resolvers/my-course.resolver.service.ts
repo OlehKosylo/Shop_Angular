@@ -2,10 +2,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {MainPageService} from '../main-page.service';
-import {UserInfo} from '../../models/UserInfo.model';
-import {CoursesContainerService} from '../../../courses/services/courses-container-service';
 import {CourseModel} from '../../../courses/models/Course.model';
-import {CoreModule} from '@angular/flex-layout';
 
 
 @Injectable()

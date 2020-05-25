@@ -12,6 +12,7 @@ export class SearchCoursesContainerResolverService implements Resolve<CourseMode
 
   resolve(route: ActivatedRouteSnapshot): Observable<CourseModel[]> {
     const searchTerm: string = route.paramMap.get('title');
+
     return this.coursesContainerService.searchCourses(searchTerm);
   }
 }

@@ -3,10 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {UserInfo} from '../models/UserInfo.model';
-import {UserModel} from '../../registration/models/User.model';
 import {CourseModel} from '../../courses/models/Course.model';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {EditUserInfo} from '../../profile-page/models/EditUserInfo.model';
 import {CommentModel} from '../../courses/models/Commentar.model';
 
@@ -14,21 +13,22 @@ import {CommentModel} from '../../courses/models/Commentar.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MainPageService {
-  public userId;
+  public userId: string;
   public user: UserInfo;
-  photoURL = 'https://firebasestorage.googleapis.com/v0/b/ottostorage-469ea.appspot.com/o/users%2Fphotos%2FprofilePhoto.jpg?alt=media&token=68df634b-7116-4097-ba83-49fd5ee90f4e';
+  public photoURL = 'https://firebasestorage.googleapis.com/v0/b/ottostorage-469ea.appspot.com/o/users%2Fphotos%2FprofilePhoto.jpg?alt=media&token=68df634b-7116-4097-ba83-49fd5ee90f4e';
 
 
   constructor(private http: HttpClient, private db: AngularFirestore, private router: Router) {
   }
 
-  getUserInfo(id): Observable<UserInfo> {
+  getUserInfo(id: string): Observable<UserInfo> {
     return this.http.get<UserInfo>('http://localhost:8081/api/main/userInfoForMainPage?userId=' + id)
       .pipe(tap(user => (this.user = user, user.photoURL ? this.photoURL = user.photoURL : '')));
   }
 
-  postCreatedCurs(Course) {
+  postCreatedCurs(Course: CourseModel) {
     this.http.post<CourseModel>('http://localhost:8081/api/course/create', {...Course})
       .subscribe((m) => {
           console.log(m);
@@ -36,30 +36,30 @@ export class MainPageService {
         err => alert('Something went wrong. Please try again'));
   }
 
-  getMyCourses(id): Observable<CourseModel[]> {
+  getMyCourses(id: string): Observable<CourseModel[]> {
     return this.http.get<CourseModel[]>('http://localhost:8081/api/course/myList?userId=' + id);
   }
 
-  getMyCourse(id, userId): Observable<CourseModel> {
+  getMyCourse(id: string, userId: string): Observable<CourseModel> {
     return this.http.get<CourseModel>(`http://localhost:8081/api/course/myCourse?courseId=${id}&userId=${userId}`);
   }
 
-  editPhotoInProfile(id, photoURL) {
+  editPhotoInProfile(id: number, photoURL: string) {
     this.photoURL = photoURL;
     this.http.post<EditUserInfo>('http://localhost:8081/api/main/userEditPhoto', {id, photoURL})
-      .subscribe((newUser: EditUserInfo) => {
+      .subscribe((newUser) => {
           this.user = {...this.user, ...newUser};
           this.router.navigate(['/main']);
         },
         err => alert('Something went wrong. Please try again'));
   }
 
-  sendComment(courseId: number, inputCommentValue: string) {
+  sendComment(courseId: number, inputCommentValue: string): Observable<CommentModel> {
     return this.http.post<CommentModel>(`http://localhost:8081/api/course/setComment`,
       {courseId, userId: this.getUserId(), text: inputCommentValue});
   }
 
-  deleteComment(commentId: number) {
+  deleteComment(commentId: number): Observable<CommentModel[]> {
     return this.http.get<CommentModel[]>(`http://localhost:8081/api/course/deleteComment?commentId=${commentId}`);
   }
 
@@ -72,7 +72,7 @@ export class MainPageService {
     return sessionStorage.getItem('courseId');
   }
 
-  public navigate(value) {
+  public navigate(value: string) {
     this.router.navigate([value]);
   }
 

@@ -3,10 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {MainPageService} from '../main-page/services/main-page.service';
 import {CoursesContainerService} from '../courses/services/courses-container-service';
 import {AppService} from '../../services/app.service';
-import {catchError, map} from 'rxjs/operators';
-import {ProfilePageService} from '../profile-page/services/profile-page.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +23,7 @@ export class StripeService {
       .subscribe(
         resp => {
           this.courseContainerService.setBoughtCourse();
+
           alert('Success, enjoy your course');
           this.router.navigate(['/main/my-courses']);
         },
@@ -37,14 +35,12 @@ export class StripeService {
   }
 
   activateCard(tokenStripe: string, cardId: string) {
-    console.log(tokenStripe);
     this.http.post('http://localhost:8081/payment/activateCard',
       {tokenStripe, userId: this.mainPageService.getUserId(), cardId})
       .subscribe(
         resp => {
           this.appService.setCardStatus(resp);
           window.location.reload();
-          // this.router.navigate(['/main/']);
         },
         err => {
           alert('Something went wrong. Please try again');
@@ -53,7 +49,7 @@ export class StripeService {
   }
 
 
-  openCheckout(price) {
+  openCheckout(price: number) {
     const handler = (<any> window).StripeCheckout.configure({
       key: 'pk_test_uwJfMaTLb0OKVoNrSXIkaHZm00KU712Vlv',
       locale: 'auto',
@@ -72,7 +68,7 @@ export class StripeService {
 
   }
 
-  changeCard(cardId, stripeCustomerId, tokenStripe) {
+  changeCard(cardId: string, stripeCustomerId: string, tokenStripe: string) {
     const handler = (<any> window).StripeCheckout.configure({
       key: 'pk_test_uwJfMaTLb0OKVoNrSXIkaHZm00KU712Vlv',
       locale: 'auto',
@@ -93,8 +89,5 @@ export class StripeService {
       description: `Activation card`,
       amount: 0,
     });
-
-
   }
-
 }

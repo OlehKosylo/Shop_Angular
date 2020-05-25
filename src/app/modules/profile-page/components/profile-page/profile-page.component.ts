@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {ProfilePageService} from '../../services/profile-page.service';
 import {StripeService} from '../../../Stripe/stripe.service';
 import * as firebase from 'firebase';
@@ -18,19 +17,14 @@ export class ProfilePageComponent implements OnInit {
   storageRef = null;
   photo = null;
 
-  // Default placeholders for rendered fields - optional
-
-
   constructor(public profilePageService: ProfilePageService, public mainPageService: MainPageService, public stripeService: StripeService) {
   }
-
 
   ngOnInit(): void {
   }
 
   activateCard() {
     this.stripeService.openCheckout(0);
-
   }
 
   changeCard() {

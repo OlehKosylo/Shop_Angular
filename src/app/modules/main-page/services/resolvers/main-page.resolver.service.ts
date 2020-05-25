@@ -3,8 +3,6 @@ import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {MainPageService} from '../main-page.service';
 import {UserInfo} from '../../models/UserInfo.model';
-import {CoursesContainerService} from '../../../courses/services/courses-container-service';
-
 
 @Injectable()
 export class MainPageResolverService implements Resolve<UserInfo> {
