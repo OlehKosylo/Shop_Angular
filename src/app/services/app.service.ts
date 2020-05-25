@@ -19,7 +19,7 @@ export class AppService {
     this.userIn = value;
   }
 
-  setCardStatus(value: boolean) {
+  setCardStatus(value) {
     this.cardStatus = value;
   }
 

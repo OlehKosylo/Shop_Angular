@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Observable} from 'rxjs';
 import {CourseModel} from '../../models/Course.model';
 import {CoursesContainerService} from '../courses-container-service';
-import {filter, map, switchMap, tap} from 'rxjs/operators';
 
 @Injectable()
 export class SearchCoursesContainerResolverService implements Resolve<CourseModel[]> {
