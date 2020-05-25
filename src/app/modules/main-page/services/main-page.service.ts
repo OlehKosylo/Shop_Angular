@@ -55,12 +55,12 @@ export class MainPageService {
   }
 
   sendComment(courseId: number, inputCommentValue: string) {
-    return this.http.post<CommentModel[]>(`http://localhost:8081/api/course/setComment`,
+    return this.http.post<CommentModel>(`http://localhost:8081/api/course/setComment`,
       {courseId, userId: this.getUserId(), text: inputCommentValue});
   }
 
-  deleteComment(commentId: number, courseId: number, userId: number) {
-    return this.http.get<CommentModel[]>(`http://localhost:8081/api/course/deleteComment?commentId=${commentId}&courseId=${courseId}&userId=${userId}`);
+  deleteComment(commentId: number) {
+    return this.http.get<CommentModel[]>(`http://localhost:8081/api/course/deleteComment?commentId=${commentId}`);
   }
 
   public getUserId(): string {
