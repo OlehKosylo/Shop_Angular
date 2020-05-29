@@ -13,7 +13,11 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MyCoursesResolverService} from './modules/main-page/services/resolvers/my-courses.resolver.service';
 import {MyCourseResolverService} from './modules/main-page/services/resolvers/my-course.resolver.service';
-import { ActivateMailComponent } from './components/activate-mail/activate-mail.component';
+import {ActivateMailComponent} from './components/activate-mail/activate-mail.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { ActivateMailComponent } from './components/activate-mail/activate-mail.
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [
     {

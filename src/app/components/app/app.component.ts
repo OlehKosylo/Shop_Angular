@@ -26,4 +26,13 @@ export class AppComponent {
     localStorage.removeItem('Token');
     localStorage.removeItem('userId');
   }
+
+  navigate() {
+    this.router.navigate(['/']);
+  }
+
+  activeRoute(path) {
+    return path === this.router.url;
+  }
+
 }

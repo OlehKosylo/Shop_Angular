@@ -11,6 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class AppService {
   userIn = false;
   cardStatus = false;
+  requestStatus = false;
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
   }
@@ -53,8 +54,10 @@ export class AppService {
           },
           err => alert('Something went wrong. Please try again'));
     });
+  }
 
-
+  setRequestStatus(value) {
+    this.requestStatus = value;
   }
 
 }

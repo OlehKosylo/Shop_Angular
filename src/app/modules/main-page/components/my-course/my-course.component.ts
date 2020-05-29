@@ -4,6 +4,7 @@ import {CourseModel} from '../../../courses/models/Course.model';
 import {MainPageService} from '../../services/main-page.service';
 import {CommentModel} from '../../../courses/models/Commentar.model';
 import {Observable} from 'rxjs';
+import {AppService} from '../../../../services/app.service';
 
 @Component({
   selector: 'app-my-course',
@@ -12,7 +13,8 @@ import {Observable} from 'rxjs';
 })
 export class MyCourseComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, public mainPageService: MainPageService) {
+  constructor(private route: ActivatedRoute, public mainPageService: MainPageService,
+              private appService: AppService) {
   }
 
   course: CourseModel;
@@ -23,8 +25,11 @@ export class MyCourseComponent implements OnInit {
     this.route.data
       .subscribe(
         course => (this.course = course.myCourseResolverService,
-          this.commentaries = course.myCourseResolverService.commentaries),
-        err => alert('Something went wrong. Please try again')
+          this.commentaries = course.myCourseResolverService.commentaries,
+          setTimeout(() => this.appService.setRequestStatus(false))),
+        err => (
+          setTimeout(() => this.appService.setRequestStatus(false)),
+            alert('Something went wrong. Please try again'))
       );
   }
 
@@ -32,15 +37,19 @@ export class MyCourseComponent implements OnInit {
   sendComment(courseId: number) {
     this.mainPageService.sendComment(courseId, this.inputCommentValue)
       .subscribe(res => (
-          this.commentaries[this.commentaries.length] = res),
-        err => alert('Something went wrong. Please try again')
+          this.commentaries[this.commentaries.length] = res,
+            setTimeout(() => this.appService.setRequestStatus(false))),
+        err => (setTimeout(() => this.appService.setRequestStatus(false)),
+          alert('Something went wrong. Please try again'))
       );
   }
 
   deleteComment(commentId: number) {
     this.mainPageService.deleteComment(commentId)
-      .subscribe(res => this.commentaries = this.newListWithoutDeleteComment(this.commentaries, commentId),
-        err => alert('Something went wrong. Please try again')
+      .subscribe(res => (this.commentaries = this.newListWithoutDeleteComment(this.commentaries, commentId),
+          setTimeout(() => this.appService.setRequestStatus(false))),
+        err => (setTimeout(() => this.appService.setRequestStatus(false)),
+          alert('Something went wrong. Please try again'))
       );
   }
 

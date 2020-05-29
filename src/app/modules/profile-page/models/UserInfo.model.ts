@@ -12,4 +12,5 @@ export interface UserInfo {
   token_stripe: string;
   card?: CardModel;
   photoURL: string;
+  mail?: string;
 }

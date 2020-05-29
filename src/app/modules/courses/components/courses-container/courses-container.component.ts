@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CourseModel} from '../../models/Course.model';
 import {CoursesContainerService} from '../../services/courses-container-service';
+import {AppService} from '../../../../services/app.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class CoursesContainerComponent implements OnInit {
 
 
   constructor(private activatedRoute: ActivatedRoute, private courseContainerService: CoursesContainerService,
-              private router: Router) {
+              private router: Router, private appService: AppService) {
   }
 
   ngOnInit(): void {
@@ -27,13 +28,17 @@ export class CoursesContainerComponent implements OnInit {
       res => (
         res.coursesContainerResolver ?
           (this.courses = res.coursesContainerResolver,
-              (res.coursesContainerResolver[0] !== undefined && (this.genre = res.coursesContainerResolver[0].genre))
+              (res.coursesContainerResolver[0] !== undefined && (this.genre = res.coursesContainerResolver[0].genre)),
+              setTimeout(() => this.appService.setRequestStatus(false))
           ) :
           (this.courses = res.searchCoursesContainerResolverService,
               (res.searchCoursesContainerResolverService[0] !== undefined &&
-                (this.genre = res.searchCoursesContainerResolverService[0].genre))
+                (this.genre = res.searchCoursesContainerResolverService[0].genre)),
+              setTimeout(() => this.appService.setRequestStatus(false))
           )),
-      err => (alert('Something went wrong. Please try again'))
+      err => (
+        setTimeout(() => this.appService.setRequestStatus(false)),
+          alert('Something went wrong. Please try again'))
     );
   }
 
@@ -47,8 +52,11 @@ export class CoursesContainerComponent implements OnInit {
       .subscribe(res => {
           this.inputSearchValue = '';
           this.courses = res;
+          setTimeout(() => this.appService.setRequestStatus(false));
         },
-        err => (alert('Something went wrong. Please try again'))
+        err => (
+          setTimeout(() => this.appService.setRequestStatus(false)),
+            alert('Something went wrong. Please try again'))
       );
   }
 
@@ -58,8 +66,12 @@ export class CoursesContainerComponent implements OnInit {
       .subscribe(res => {
           this.inputPriceValue = '';
           this.courses = res;
+          setTimeout(() => this.appService.setRequestStatus(false));
         },
-        err => (alert('Something went wrong. Please try again'))
+        err => (
+          setTimeout(() => this.appService.setRequestStatus(false)),
+            alert('Something went wrong. Please try again')
+        )
       );
   }
 
@@ -67,8 +79,11 @@ export class CoursesContainerComponent implements OnInit {
     this.courseContainerService.getCourseByLimitPrice(this.inputPriceValue, this.genre)
       .subscribe(res => {
           this.courses = res;
+          setTimeout(() => this.appService.setRequestStatus(false));
         },
-        err => (alert('Something went wrong. Please try again'))
+        err => (
+          setTimeout(() => this.appService.setRequestStatus(false)),
+            alert('Something went wrong. Please try again'))
       );
   }
 
@@ -76,8 +91,12 @@ export class CoursesContainerComponent implements OnInit {
     this.courseContainerService.getCourses(this.genre)
       .subscribe(res => {
           this.courses = res;
+          setTimeout(() => this.appService.setRequestStatus(false));
         },
-        err => (alert('Something went wrong. Please try again'))
+        err => (
+          setTimeout(() => this.appService.setRequestStatus(false)),
+            alert('Something went wrong. Please try again')
+        )
       );
   }
 

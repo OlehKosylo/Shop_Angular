@@ -3,6 +3,7 @@ import {ProfilePageService} from '../../services/profile-page.service';
 import {StripeService} from '../../../Stripe/stripe.service';
 import * as firebase from 'firebase';
 import {MainPageService} from '../../../main-page/services/main-page.service';
+import {AppService} from '../../../../services/app.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ProfilePageComponent implements OnInit {
   storageRef = null;
   photo = null;
 
-  constructor(public profilePageService: ProfilePageService, public mainPageService: MainPageService, public stripeService: StripeService) {
+  constructor(public profilePageService: ProfilePageService, public mainPageService: MainPageService,
+              public stripeService: StripeService, private appService: AppService) {
   }
 
   ngOnInit(): void {
@@ -37,9 +39,12 @@ export class ProfilePageComponent implements OnInit {
     this.photo = event.target.files[0];
     this.metaData = {contentType: this.photo.type};
     this.storageRef = firebase.storage().ref().child(`users/photos/userId=${this.profilePageService.user.id}:profilePhoto`);
+
+    this.uploadPhoto();
   }
 
   uploadPhoto() {
+    this.appService.setRequestStatus(true);
     this.uploadTask = this.storageRef.put(this.photo, this.metaData);
     console.log('Uploading: ' + this.photo.name);
 
@@ -49,6 +54,7 @@ export class ProfilePageComponent implements OnInit {
       uploadSnapshot.ref.getDownloadURL()
         .then(downloadURL => {
           this.mainPageService.editPhotoInProfile(this.profilePageService.user.id, downloadURL);
+          setTimeout(() => this.appService.setRequestStatus(false));
         });
     });
   }

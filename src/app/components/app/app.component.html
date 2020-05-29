@@ -1,29 +1,23 @@
 <div>
-  <header class="container">
-    <nav class="d-flex justify-content-between">
-      <div class="col-1 ">
-        <img src="https://oborot.ru/wp-content/uploads/2018/04/otto.jpg" alt="">
-      </div>
-
-      <div *ngIf="appService.userIn">
-        <ul class="d-flex justify-content-center">
-          <li class="list-none p-2"><a class="text-decoration-none" routerLink="main">Головна</a></li>
-          <li class="list-none p-2"><a class="text-decoration-none" routerLink="tests">Тести</a></li>
-          <li class="list-none p-2"><a class="text-decoration-none" routerLink="courses">Курси</a></li>
-          <li class="list-none p-2"><a class="text-decoration-none">Про проект</a></li>
-          <li class="list-none p-2"><a class="text-decoration-none">Про нас</a></li>
+  <header>
+    <nav class="navbar navbar-inverse opacity09">
+      <div class="container-fluid ">
+        <div class="navbar-header">
+          <a class="navbar-brand" (click)="navigate()">OTTO</a>
+        </div>
+        <ul *ngIf="appService.userIn == true" class="nav navbar-nav">
+          <li [ngClass]="activeRoute('/main') && 'active'"><a routerLink="main">Головна</a></li>
+          <li [ngClass]="activeRoute('/courses') && 'active'"><a routerLink="courses">Курси</a></li>
+          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">Про нас</a></li>
+          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">Про курси</a></li>
         </ul>
-      </div>
-
-      <div class="mt-2">
-        <ul *ngIf="appService.userIn == false" class="d-flex text-decoration-none col-3">
-          <li class="list-none px-2"><a class="text-decoration-none p-3" routerLink="login">Вхід</a></li>
-          <li class="list-none px-2"><a class="text-decoration-none" routerLink="registration">Регістрація</a></li>
-        </ul>
-
-        <ul *ngIf="appService.userIn == true" class="d-flex text-decoration-none col-3">
-          <li class="list-none px-2"><a class="text-decoration-none" routerLink="/"
-                                        (click)="goOut()">Вихід</a></li>
+        <ul class="nav navbar-nav navbar-right">
+          <li *ngIf="appService.userIn == false"><a routerLink="registration"><span
+            class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li *ngIf="appService.userIn == false"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span>
+            Login</a></li>
+          <li *ngIf="appService.userIn == true" (click)="goOut()"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span>
+            Вихід</a></li>
         </ul>
       </div>
     </nav>
@@ -31,6 +25,24 @@
 
   <main>
     <router-outlet></router-outlet>
+    <div *ngIf="appService.requestStatus" class="container">
+      <div class="row">
+        <div id="loader">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="loading"></div>
+        </div>
+      </div>
+    </div>
   </main>
-  <footer></footer>
+
+  <footer>
+
+  </footer>
 </div>

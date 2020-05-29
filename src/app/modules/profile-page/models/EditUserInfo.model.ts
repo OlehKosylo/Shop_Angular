@@ -6,4 +6,6 @@ export interface EditUserInfo {
   sex: string;
   id?: number;
   photoURL?: string;
+  username?: string;
+  mail?: string;
 }

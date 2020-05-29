@@ -18,16 +18,18 @@ export class StripeService {
 
   chargeCard(resValue) {
     const bankCard = resValue.bankCard;
+    this.appService.setRequestStatus(true);
     this.http.post(`http://localhost:8081/payment/charge`,
       {...bankCard, price: resValue.price, courseId: this.courseContainerService.getCourseId()})
       .subscribe(
         resp => {
           this.courseContainerService.setBoughtCourse();
-
+          setTimeout(() => this.appService.setRequestStatus(false));
           alert('Success, enjoy your course');
           this.router.navigate(['/main/my-courses']);
         },
         err => {
+          setTimeout(() => this.appService.setRequestStatus(false));
           alert('Something went wrong. Please try again');
         }
       );
@@ -35,14 +37,17 @@ export class StripeService {
   }
 
   activateCard(tokenStripe: string, cardId: string) {
+    this.appService.setRequestStatus(true);
     this.http.post('http://localhost:8081/payment/activateCard',
       {tokenStripe, userId: this.mainPageService.getUserId(), cardId})
       .subscribe(
         resp => {
           this.appService.setCardStatus(resp);
+          setTimeout(() => this.appService.setRequestStatus(false));
           window.location.reload();
         },
         err => {
+          setTimeout(() => this.appService.setRequestStatus(false));
           alert('Something went wrong. Please try again');
         }
       );
@@ -73,12 +78,15 @@ export class StripeService {
       key: 'pk_test_uwJfMaTLb0OKVoNrSXIkaHZm00KU712Vlv',
       locale: 'auto',
       token: token => {
+        this.appService.setRequestStatus(true);
         this.http.post('http://localhost:8081/payment/changeCard',
           {cardId, stripeCustomerId, tokenStripe, userId: this.mainPageService.getUserId()})
           .subscribe(resp => {
               this.activateCard(token.id, token.card.id);
+              setTimeout(() => this.appService.setRequestStatus(false));
             },
             err => {
+              setTimeout(() => this.appService.setRequestStatus(false));
               alert('Something went wrong. Please try again');
             });
       }
