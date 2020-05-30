@@ -28,7 +28,7 @@ export class AppComponent {
   }
 
   navigate() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/main']);
   }
 
   activeRoute(path) {

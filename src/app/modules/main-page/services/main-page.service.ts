@@ -41,7 +41,7 @@ export class MainPageService {
         },
         err => (
           setTimeout(() => this.appService.setRequestStatus(false)) ,
-            alert('Something went wrong. Please try again')));
+            alert(err.error.message)));
   }
 
   getMyCourses(id: string): Observable<CourseModel[]> {
@@ -65,7 +65,7 @@ export class MainPageService {
         },
         err => (
           setTimeout(() => this.appService.setRequestStatus(false)),
-            alert('Something went wrong. Please try again')));
+            alert(err.error.message)));
   }
 
   sendComment(courseId: number, inputCommentValue: string): Observable<CommentModel> {

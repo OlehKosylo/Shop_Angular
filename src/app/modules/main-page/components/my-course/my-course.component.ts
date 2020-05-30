@@ -29,7 +29,7 @@ export class MyCourseComponent implements OnInit {
           setTimeout(() => this.appService.setRequestStatus(false))),
         err => (
           setTimeout(() => this.appService.setRequestStatus(false)),
-            alert('Something went wrong. Please try again'))
+            alert(err.error.message))
       );
   }
 
@@ -38,9 +38,11 @@ export class MyCourseComponent implements OnInit {
     this.mainPageService.sendComment(courseId, this.inputCommentValue)
       .subscribe(res => (
           this.commentaries[this.commentaries.length] = res,
-            setTimeout(() => this.appService.setRequestStatus(false))),
+            setTimeout(() => (
+              this.inputCommentValue = '',
+                this.appService.setRequestStatus(false)))),
         err => (setTimeout(() => this.appService.setRequestStatus(false)),
-          alert('Something went wrong. Please try again'))
+          alert(err.error.message))
       );
   }
 
@@ -49,7 +51,7 @@ export class MyCourseComponent implements OnInit {
       .subscribe(res => (this.commentaries = this.newListWithoutDeleteComment(this.commentaries, commentId),
           setTimeout(() => this.appService.setRequestStatus(false))),
         err => (setTimeout(() => this.appService.setRequestStatus(false)),
-          alert('Something went wrong. Please try again'))
+          alert(err.error.message))
       );
   }
 

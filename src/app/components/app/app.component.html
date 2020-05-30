@@ -6,10 +6,10 @@
           <a class="navbar-brand" (click)="navigate()">OTTO</a>
         </div>
         <ul *ngIf="appService.userIn == true" class="nav navbar-nav">
-          <li [ngClass]="activeRoute('/main') && 'active'"><a routerLink="main">Головна</a></li>
-          <li [ngClass]="activeRoute('/courses') && 'active'"><a routerLink="courses">Курси</a></li>
-          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">Про нас</a></li>
-          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">Про курси</a></li>
+          <li [ngClass]="activeRoute('/main') && 'active'"><a routerLink="main">Main page</a></li>
+          <li [ngClass]="activeRoute('/courses') && 'active'"><a routerLink="courses">Courses</a></li>
+          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">About us</a></li>
+          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">About courses</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li *ngIf="appService.userIn == false"><a routerLink="registration"><span
@@ -17,7 +17,7 @@
           <li *ngIf="appService.userIn == false"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span>
             Login</a></li>
           <li *ngIf="appService.userIn == true" (click)="goOut()"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span>
-            Вихід</a></li>
+           Log out</a></li>
         </ul>
       </div>
     </nav>

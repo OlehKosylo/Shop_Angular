@@ -13,7 +13,6 @@ export class ActivatedCardGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log(this.appSerice.cardStatus)
     if (!this.appSerice.cardStatus) {
       alert('Activate your card before creating course. Check your profile.');
     }

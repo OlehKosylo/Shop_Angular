@@ -52,7 +52,7 @@ export class AppService {
         .subscribe((m) => {
             console.log(m);
           },
-          err => alert('Something went wrong. Please try again'));
+          err =>  alert(err.error.message));
     });
   }
 

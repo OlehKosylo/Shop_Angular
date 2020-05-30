@@ -30,7 +30,7 @@ export class StripeService {
         },
         err => {
           setTimeout(() => this.appService.setRequestStatus(false));
-          alert('Something went wrong. Please try again');
+          alert(err.error.message);
         }
       );
 
@@ -48,7 +48,7 @@ export class StripeService {
         },
         err => {
           setTimeout(() => this.appService.setRequestStatus(false));
-          alert('Something went wrong. Please try again');
+          alert(err.error.message);
         }
       );
   }
@@ -87,7 +87,7 @@ export class StripeService {
             },
             err => {
               setTimeout(() => this.appService.setRequestStatus(false));
-              alert('Something went wrong. Please try again');
+              alert(err.error.message);
             });
       }
     });

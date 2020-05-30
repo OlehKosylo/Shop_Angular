@@ -38,7 +38,7 @@ export class CoursesContainerComponent implements OnInit {
           )),
       err => (
         setTimeout(() => this.appService.setRequestStatus(false)),
-          alert('Something went wrong. Please try again'))
+          alert(err.error.message))
     );
   }
 
@@ -56,7 +56,7 @@ export class CoursesContainerComponent implements OnInit {
         },
         err => (
           setTimeout(() => this.appService.setRequestStatus(false)),
-            alert('Something went wrong. Please try again'))
+            alert(err.error.message))
       );
   }
 
@@ -70,7 +70,7 @@ export class CoursesContainerComponent implements OnInit {
         },
         err => (
           setTimeout(() => this.appService.setRequestStatus(false)),
-            alert('Something went wrong. Please try again')
+            alert(err.error.message)
         )
       );
   }
@@ -83,7 +83,7 @@ export class CoursesContainerComponent implements OnInit {
         },
         err => (
           setTimeout(() => this.appService.setRequestStatus(false)),
-            alert('Something went wrong. Please try again'))
+            alert(err.error.message))
       );
   }
 
@@ -95,7 +95,7 @@ export class CoursesContainerComponent implements OnInit {
         },
         err => (
           setTimeout(() => this.appService.setRequestStatus(false)),
-            alert('Something went wrong. Please try again')
+            alert(err.error.message)
         )
       );
   }

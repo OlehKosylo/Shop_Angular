@@ -13,14 +13,25 @@ a {
   text-decoration: none;
 }
 
+
 .border {
   border: 1px solid silver;
+  border-radius: 5px;
+}
+
+.borderForMovie {
+  border: 1px solid lightskyblue;
   border-radius: 5px;
 }
 
 .cursor {
   cursor: pointer;
 }
+
+.error {
+  color: red;
+}
+
 
 .hoverBTN :hover {
   background: white;
@@ -70,4 +81,11 @@ a {
   color: #9d9d9d;
 }
 
+.hoverDivCourse :hover{
+  color: white;
+  background: #9d9d9d;
+}
 
+.hoverDivCourse :hover .lightSilver {
+  color: black;
+}
