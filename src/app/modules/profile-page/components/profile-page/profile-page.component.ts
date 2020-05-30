@@ -46,11 +46,8 @@ export class ProfilePageComponent implements OnInit {
   uploadPhoto() {
     this.appService.setRequestStatus(true);
     this.uploadTask = this.storageRef.put(this.photo, this.metaData);
-    console.log('Uploading: ' + this.photo.name);
 
     this.uploadTask.then((uploadSnapshot: firebase.storage.UploadTaskSnapshot) => {
-      console.log('Upload is complete');
-
       uploadSnapshot.ref.getDownloadURL()
         .then(downloadURL => {
           this.mainPageService.editPhotoInProfile(this.profilePageService.user.id, downloadURL);

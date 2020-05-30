@@ -3,7 +3,6 @@ import {ActivatedRoute} from '@angular/router';
 import {CourseModel} from '../../../courses/models/Course.model';
 import {MainPageService} from '../../services/main-page.service';
 import {CommentModel} from '../../../courses/models/Commentar.model';
-import {Observable} from 'rxjs';
 import {AppService} from '../../../../services/app.service';
 
 @Component({

@@ -3,22 +3,27 @@
     <nav class="navbar navbar-inverse opacity09">
       <div class="container-fluid ">
         <div class="navbar-header">
-          <a class="navbar-brand" (click)="navigate()">OTTO</a>
+          <a class="navbar-brand">OTTO</a>
         </div>
         <ul *ngIf="appService.userIn == true" class="nav navbar-nav">
           <li [ngClass]="activeRoute('/main') && 'active'"><a routerLink="main">Main page</a></li>
           <li [ngClass]="activeRoute('/courses') && 'active'"><a routerLink="courses">Courses</a></li>
-          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">About us</a></li>
-          <li [ngClass]="activeRoute('/#') && 'active'"><a routerLink="#">About courses</a></li>
+          <li [ngClass]="activeRoute('/#') && 'active'"><a>About us</a></li>
+          <li [ngClass]="activeRoute('/#') && 'active'"><a>About courses</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li *ngIf="appService.userIn == false"><a routerLink="registration"><span
-            class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li *ngIf="appService.userIn == false"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span>
-            Login</a></li>
-          <li *ngIf="appService.userIn == true" (click)="goOut()"><a routerLink="login"><span class="glyphicon glyphicon-log-in"></span>
-           Log out</a></li>
-        </ul>
+
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="appService.userIn == false"><a routerLink="registration"><span
+              class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li *ngIf="appService.userIn == false"><a routerLink="login"><span
+              class="glyphicon glyphicon-log-in"></span>
+              Login</a></li>
+            <li *ngIf="appService.userIn == true" (click)="goOut()"><a routerLink="login"><span
+              class="glyphicon glyphicon-log-in"></span>
+              Log out</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   </header>

@@ -8,4 +8,11 @@
   box-shadow: none;
 }
 
+@media (max-width: 576px) {
+
+  .fb-card {
+    display: none;
+  }
+
+}
 

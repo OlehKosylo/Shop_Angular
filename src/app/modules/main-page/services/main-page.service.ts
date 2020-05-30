@@ -18,7 +18,7 @@ import {AppService} from '../../../services/app.service';
 export class MainPageService {
   public userId: string;
   public user: UserInfo;
-  public photoURL = 'https://firebasestorage.googleapis.com/v0/b/ottostorage-469ea.appspot.com/o/users%2Fphotos%2FprofilePhoto.jpg?alt=media&token=68df634b-7116-4097-ba83-49fd5ee90f4e';
+  public photoURL = 'https://firebasestorage.googleapis.com/v0/b/ottostorage-469ea.appspot.com/o/preViewPhoto.jpg?alt=media&token=301b7a55-6d1b-478d-ab03-adc17980fbcd';
 
 
   constructor(private http: HttpClient, private db: AngularFirestore, private router: Router,

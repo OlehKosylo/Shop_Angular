@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
-import {Observable, throwError} from 'rxjs';
+import {throwError} from 'rxjs';
 import {CourseModel} from '../modules/courses/models/Course.model';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
@@ -50,9 +50,8 @@ export class AppService {
       const token = params.token;
       return this.http.get<CourseModel[]>(`http://localhost:8081/api/auth/activate?token=${token}`)
         .subscribe((m) => {
-            console.log(m);
           },
-          err =>  alert(err.error.message));
+          err => alert(err.error.message));
     });
   }
 
