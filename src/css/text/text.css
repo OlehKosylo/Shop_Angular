@@ -1,0 +1,409 @@
+.bold{
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center!important;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-decoration-none{
+    text-decoration: none;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-capitalize{
+    text-transform: capitalize;
+}
+
+.visibility-visable {
+    visibility: visible;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.word-wrap{
+    word-wrap: break-word;
+}
+
+.text-nowrap {
+  white-space: nowrap!important;
+}
+
+.fn-size-0{
+    font-size: 0;
+}
+
+.fn-size-1{
+    font-size: .25rem
+}
+
+.fn-size-2{
+    font-size: .5rem;
+}
+
+.fn-size-3{
+    font-size: 1rem;
+}
+
+.fn-size-3Extra{
+    font-size: 1.125rem;
+}
+.fn-size-4{
+    font-size: 1.5rem;
+}
+
+.fn-size-5{
+    font-size: 2rem;
+}
+
+.fn-size-6{
+    font-size: 2.5rem;
+}
+
+.fn-size-7{
+    font-size: 3rem;
+}
+
+.fn-size-8{
+    font-size: 3.5rem;
+}
+
+.fn-size-9{
+    font-size: 4rem;
+}
+
+.fn-size-10{
+    font-size: 4.5rem;
+}
+
+.fn-size-11{
+    font-size: 5rem;
+}
+
+.fn-size-12{
+    font-size: 5.5rem;
+}
+
+
+/*======== Adaptation ==========*/
+@media screen and (max-width: 1200px){
+    
+.fn-size-0-xl{
+    font-size: 0;
+}
+
+.fn-size-1-xl{
+    font-size: .25rem;
+}
+
+.fn-size-2-xl{
+    font-size: .5rem;
+}
+
+.fn-size-3-xl{
+    font-size: .1rem;
+}
+
+.fn-size-4-xl{
+    font-size: 1.5rem;
+}
+
+.fn-size-5-xl{
+    font-size: 2rem;
+}
+
+.fn-size-6-xl{
+    font-size: 2.5rem;
+}
+
+.fn-size-7-xl{
+    font-size: 3rem;
+}
+
+.fn-size-8-xl{
+    font-size: 3.5rem;
+}
+    
+.fn-size-9-xl{
+    font-size: 4rem;
+}
+
+.fn-size-10-xl{
+    font-size: 4.5rem;
+}
+
+.fn-size-11-xl{
+    font-size: 5rem;
+}
+
+.fn-size-12-xl{
+    font-size: 10rem;
+ }
+}
+
+
+@media screen and (max-width: 992px){
+.text-center-lg{
+    text-align: center;
+    }
+    
+.fn-size-0-lg{
+    font-size: 0;
+}
+
+.fn-size-1-lg{
+    font-size: .25rem;
+}
+
+.fn-size-2-lg{
+    font-size: .5rem;
+}
+
+.fn-size-3-lg{
+    font-size: .1rem;
+}
+
+.fn-size-4-lg{
+    font-size: 1.5rem;
+}
+
+.fn-size-5-lg{
+    font-size: 2rem;
+}
+
+.fn-size-6-lg{
+    font-size: 2.5rem;
+}
+
+.fn-size-7-lg{
+    font-size: 3rem;
+}
+
+.fn-size-8-lg{
+    font-size: 3.5rem;
+}
+
+.fn-size-9-lg{
+    font-size: 4rem;
+}
+
+.fn-size-10-lg{
+    font-size: 4.5rem;
+}
+
+.fn-size-11-lg{
+    font-size: 5rem;
+}
+
+.fn-size-12-lg{
+    font-size: 5.5rem;
+ }
+}
+
+
+@media screen and (max-width: 768px){
+    
+.fn-size-0-md{
+    font-size: 0;
+}
+
+.fn-size-1-md{
+    font-size: .25rem;
+}
+
+.fn-size-2-md{
+    font-size: .5rem;
+}
+
+.fn-size-3-md{
+    font-size: .1rem;
+}
+
+.fn-size-4-md{
+    font-size: 1.5rem;
+}
+
+.fn-size-5-md{
+    font-size: 2rem;
+}
+
+.fn-size-6-md{
+    font-size: 2.5rem;
+}
+
+.fn-size-7-md{
+    font-size: 3rem;
+}
+
+.fn-size-8-md{
+    font-size: 3.5rem;
+}
+
+.fn-size-9-md{
+    font-size: 4rem;
+}
+
+.fn-size-10-md{
+    font-size: 4.5rem;
+}
+
+.fn-size-11-md{
+    font-size: 5rem;
+}
+
+.fn-size-12-md{
+    font-size: 5.5rem;
+ }
+}
+
+
+
+@media screen and (max-width: 576px){
+    
+.fn-size-0-sm{
+    font-size: 0;
+}
+
+.fn-size-1-sm{
+    font-size: .25rem;
+}
+
+.fn-size-2-sm{
+    font-size: .5rem;
+}
+
+.fn-size-3-sm{
+    font-size: .1rem;
+}
+
+.fn-size-4-sm{
+    font-size: 1.5rem;
+}
+
+.fn-size-5-sm{
+    font-size: 2rem;
+}
+
+.fn-size-6-sm{
+    font-size: 2.5rem;
+}
+
+.fn-size-7-sm{
+    font-size: 3rem;
+}
+
+.fn-size-8-sm{
+    font-size: 3.5rem;
+}
+
+.fn-size-9-sm{
+    font-size: 4rem;
+}
+
+.fn-size-10-sm{
+    font-size: 4.5rem;
+}
+
+.fn-size-11-sm{
+    font-size: 5rem;
+}
+
+.fn-size-12-sm{
+    font-size: 5.5rem;
+ }
+}
+
+
+@media screen and (max-width: 360px){
+    
+.fn-size-0-xs{
+    font-size: 0;
+}
+
+.fn-size-1-xs{
+    font-size: .25rem;
+}
+
+.fn-size-2-xs{
+    font-size: .5rem;
+}
+
+.fn-size-3-xs{
+    font-size: .1rem;
+}
+
+.fn-size-4-xs{
+    font-size: 1.5rem;
+}
+
+.fn-size-5-xs{
+    font-size: 2rem;
+}
+
+.fn-size-6-xs{
+    font-size: 2.5rem;
+}
+
+.fn-size-7-xs{
+    font-size: 3rem;
+}
+
+.fn-size-8-xs{
+    font-size: 3.5rem;
+}
+
+.fn-size-9-xs{
+    font-size: 4rem;
+}
+
+.fn-size-10-xs{
+    font-size: 4.5rem;
+}
+
+.fn-size-11-xs{
+    font-size: 5rem;
+}
+
+.fn-size-12-xs{
+    font-size: 10rem;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

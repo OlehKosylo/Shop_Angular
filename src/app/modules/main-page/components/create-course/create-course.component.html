@@ -1,0 +1,67 @@
+<div>
+
+  <form [formGroup]="createCourseForma" (submit)="createCourse()">
+
+    <div class="text-center">
+
+      <div>
+        <label>Title </label>
+        <span [ngClass]="(createCourseForma.controls.title.invalid) ? 'error' : '' ">
+           <input class="w-100 p-1 " type="text" formControlName="title">
+        </span>
+      </div>
+
+      <div>
+        <label>Price </label>
+        <span [ngClass]="(createCourseForma.controls.price.invalid) ? 'error' : '' ">
+            <input class="w-100 p-1" type="text" formControlName="price">
+        </span>
+      </div>
+
+      <div>
+        <label>Description </label>
+        <span [ngClass]="(createCourseForma.controls.description.invalid) ? 'error' : '' ">
+          <textarea class="w-100 p-1" name="" id="" cols="30" rows="10" type="text"
+                    formControlName="description"></textarea>
+         </span>
+      </div>
+
+
+      <div>
+        <div>
+          <label>Genre </label>
+          <select class="w-100" formControlName="genre">
+            <option>C</option>
+            <option>Java</option>
+            <option>Python</option>
+            <option>Delphi</option>
+            <option>Js</option>
+            <option>Web</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div *ngIf="createCourseForma.controls.title.valid">
+        <div>
+          <label>Video </label>
+          <div>
+            <label for="files" class="w-100 bg-white silver">Load video</label>
+          </div>
+          <input style="visibility:hidden;" id="files" formControlName="file" type="file"
+                 (change)="onFileSelected($event)">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="my-2 bg-none w-100 text-center">
+      <button class="w-100" type="submit" [disabled]="createCourseForma.invalid">
+        <span [ngClass]="createCourseForma.invalid ? 'red' : 'green'">Create course</span>
+      </button>
+    </div>
+  </form>
+
+</div>
+
+

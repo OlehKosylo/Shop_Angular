@@ -1,0 +1,58 @@
+<div class="login-dark">
+  <form [formGroup]="registrationForma" (submit)="postDataForRegistration()">
+    <h2 class="sr-only">Login Form</h2>
+    <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+
+    <div
+      [ngClass]="(registrationForma.controls.username.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="username"
+             placeholder="Login">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.mail.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="mail" placeholder="Email">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.password.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="password" formControlName="password"
+             placeholder="Password">
+    </div>
+
+    <div
+      [ngClass] ="registrationForma.controls.password.touched && (registrationForma.controls.password.value != registrationForma.controls.duplicate_password.value
+      || registrationForma.controls.password.invalid || registrationForma.controls.duplicate_password.invalid) ? 'error' : 'form-group' ">
+
+      <input class="form-control" type="password" formControlName="duplicate_password"
+             placeholder="Dublicate password">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.name_surname.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="name_surname"
+             placeholder="Name and Surname">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.age.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="age"
+             placeholder="Age">
+    </div>
+
+    <div>
+      <div class="select mt-2 ml-3 lightSilver opacity09">
+        <label class="lighter mr-2">Sex </label>
+        <select formControlName="sex">
+          <option >Man</option>
+          <option>Woman ❤️‍</option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="frm-group">
+      <button [disabled]="registrationForma.invalid" class="btn btn-primary btn-block" type="submit">Sign Up</button>
+    </div>
+    <a (click)="navigate()" class="forgot cursor">Forgot your email or password?</a></form>
+</div>

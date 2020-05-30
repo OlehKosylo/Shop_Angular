@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "storageforotto": {
+      "hosting": {
+        "Angular": [
+          "storageforotto"
+        ]
+      }
+    }
+  }
+}

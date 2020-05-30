@@ -1,0 +1,30 @@
+<div class="container ">
+  <div class="fb-profile bg-lightBlack opacity09 borderRadius10">
+
+    <div style="height: 150px" align="left" class="fb-image-lg bg-black py-4Extra ">
+      <div class="fl-r  mr-2">
+        <span class="hoverBTN "><a class="p-4 mx-2 border white p-2-xs" routerLink="profile">Profile</a></span>
+        <span class="hoverBTN"><a class="p-4 mx-2  border white p-2-xs" routerLink="my-courses">My courses</a></span>
+        <span class="hoverBTN"><a class="p-4 mx-2  border white p-2-xs" routerLink="create">Create course</a></span>
+      </div>
+    </div>
+
+    <div >
+      <img align="left" style="height: 260px" src="{{mainPageService.photoURL}}"
+           alt="Profile image example"
+           class="fb-image-profile thumbnail"/>
+
+    </div>
+
+    <div class="fb-profile-text  d-flex  ">
+      <div class="col-3 text-center">
+        <h1 class="white fn-size-4-sm">{{mainPageService.user.name_surname}}</h1>
+        <p class="white"> Level: {{mainPageService.user.lvl}}</p>
+      </div>
+      <div class="col-9 p-2 bg-black">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+  </div>
+</div>

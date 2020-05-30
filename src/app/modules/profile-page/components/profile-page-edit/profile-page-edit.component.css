@@ -1,0 +1,14 @@
+.editForma input{
+  background: none;
+  border: solid silver;
+  border-width: 0 0 1px 0;
+}
+
+
+@media (max-width: 360px) {
+
+  .media360 {
+    display: none;
+  }
+
+}

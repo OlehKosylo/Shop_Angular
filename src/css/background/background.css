@@ -1,0 +1,67 @@
+.bg-red {
+    background-color: red;
+}
+
+.bg-blue {
+    background-color: blue;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-yellow {
+    background-color: yellow;
+}
+
+.bg-brown {
+    background-color: brown;
+}
+
+.bg-orange {
+    background-color: orange;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-pink {
+    background-color: pink;
+}
+
+.bg-silver{
+    background: silver;
+}
+
+.bg-purple {
+    background-color: purple;
+}
+
+.bg-deepSilver{
+    background-color: #575757 ;
+}
+
+.bg-deepBlack{
+    background-color: #272727;
+}
+
+.bg-no-repeat{
+    background-repeat: no-repeat;
+}
+
+.bg-position-center{
+    background-position: center;
+}
+
+.bg-contain{
+    background-size: contain;
+}
+
+.bg-cover{
+    background-size: cover;
+}

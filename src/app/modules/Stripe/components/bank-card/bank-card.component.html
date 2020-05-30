@@ -1,0 +1,47 @@
+<div>
+  <div class="card-container"></div>
+  <form [formGroup]="bankCardForma" (submit)="openCheckout()"
+        card
+        container=".card-container"
+        card-width="300"
+        [messages]="messages"
+        [placeholders]="placeholders"
+        [masks]="masks"
+        formatting="false"
+        debug="true">
+
+
+    <div class="mt-3">
+
+      <div>
+        <input placeholder="Card number" type="text" name="number" card-number formControlName="card_number"
+               class="border bg-none my-1 white"/>
+      </div>
+
+      <div>
+        <input placeholder="First name" type="text" name="first-name" card-name formControlName="first_name"
+               class="border bg-none my-1 mx-1 white"/>
+        <input placeholder="Last name" type="text" name="last-name" card-name formControlName="last_name"
+               class="border bg-none my-1 mx-1 white"/>
+      </div>
+
+      <div>
+        <input placeholder="Card expiry" type="text" name="expiry" card-expiry formControlName="card_expiry"
+               class="border bg-none my-1 mx-1 white"/>
+        <input placeholder="Card cvc" type="text" name="cvc" card-cvc formControlName="card_cvc"
+               class="border bg-none my-1 mx-1 white"/></div>
+    </div>
+
+    <div class="my-2">
+      <button [ngClass]="bankCardForma.invalid ? 'bg-red': 'bg-green'"
+              class="border bg-none p-1  w-50" type="submit"
+              [disabled]="bankCardForma.invalid"
+      >Pay
+      </button>
+    </div>
+  </form>
+
+</div>
+
+
+
