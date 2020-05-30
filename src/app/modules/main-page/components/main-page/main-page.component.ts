@@ -11,7 +11,7 @@ import {AppService} from '../../../../services/app.service';
 export class MainPageComponent implements OnInit {
 
   constructor(public mainPageService: MainPageService, private activatedRoute: ActivatedRoute,
-              private router: Router, private appService: AppService) {
+              private router: Router, public appService: AppService) {
 
   }
 
