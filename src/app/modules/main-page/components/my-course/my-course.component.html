@@ -29,9 +29,12 @@
       <ul class="list-none">
         <li *ngFor="let comment of commentaries">
           <p>
-            <span [ngClass]="(comment.statusForDeleteView === 1) && 'delete' "><span
-              *ngIf="comment.statusForDeleteView === 1" (click)="deleteComment(+comment.id)"
-              class="silver">{{comment.ownerName}}</span> </span>: <span class="white">{{comment.text}}</span>
+            <span [ngClass]="(comment.statusForDeleteView === 1) && 'delete' ">
+              <span *ngIf="comment.statusForDeleteView === 1" (click)="deleteComment(+comment.id)" class="silver">
+               {{comment.ownerName}}</span>
+            <span *ngIf="comment.statusForDeleteView != 1" class="silver">
+              {{comment.ownerName}}</span>
+            </span>: <span class="white">{{comment.text}}</span>
           </p>
 
         </li>
