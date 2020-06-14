@@ -17,10 +17,9 @@ export class LoginComponent implements OnInit {
 
   public loginForma: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public loginService: LoginService,
-              public appService: AppService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, public loginService: LoginService, private router: Router) {
     this.loginForma = formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
     });
   }
@@ -30,19 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.loginService.postRequestForLogin(this.loginForma.value).subscribe(
-      message => {
-        const decodedAccessToken = this.appService.getDecodedAccessToken(message.accessToken);
-        localStorage.setItem('userId', decodedAccessToken.sub);
-
-        localStorage.setItem('Token', message.tokenType + ' ' + message.accessToken);
-        this.router.navigate(['main']);
-        this.appService.setUserIn(true);
-      },
-      error => {
-        this.error = error;
-      }
-    );
+    this.loginService.postRequestForLogin(this.loginForma.value);
   }
 
   navigate() {

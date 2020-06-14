@@ -14,14 +14,11 @@ export class RegistrationService {
 
   postRequestForRegistration(User: UserModel) {
     this.appService.setRequestStatus(true);
-    this.http.post<UserModel>('http://localhost:8081/api/auth/register', {...User})
-      .subscribe((m) => {
-          alert('Success. Check your mail for activate account!');
-          setTimeout(() => this.appService.setRequestStatus(false));
-        },
-        err => {
-          setTimeout(() => this.appService.setRequestStatus(false))
-          alert(err.error.message);
+    return this.http.post<any>(' http://localhost:3333/auth/registration', {...User})
+      .subscribe(res => {
+          alert('Successes. Check your email for activating');
+          this.appService.setRequestStatus(false);
         });
   }
+
 }

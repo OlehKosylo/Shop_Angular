@@ -9,46 +9,26 @@ import {Router} from '@angular/router';
 })
 export class ForgotPasswordService {
 
-  showRecoverPageStatus = false;
-
   constructor(private http: HttpClient, private appService: AppService, private router: Router) {
   }
 
-  postDataForRecoverPass(newPass: RecoverPassModel , userId) {
+  postDataForRecoverPass(newPass: RecoverPassModel, token) {
     this.appService.setRequestStatus(true);
-    this.http.post('http://localhost:8081/api/auth/recoverPass', {password: newPass.password, userId})
+    this.http.post('http://localhost:3333/auth/recoverPassword/setNew', {password: newPass.password, token})
       .subscribe((m) => {
           alert('Success');
           setTimeout(() => this.appService.setRequestStatus(false));
           this.router.navigate(['/login']);
-        },
-        err => {
-          setTimeout(() => this.appService.setRequestStatus(false));
-          alert(err.error.message);
         });
   }
 
-  postEmailForCheckValid(mail: string) {
+  postEmailForCheckValid(email: string) {
     this.appService.setRequestStatus(true);
-    this.http.post('http://localhost:8081/api/auth/checkEmail', {mail})
+    this.http.post('http://localhost:3333/auth/recoverPassword', {email})
       .subscribe((m) => {
           alert('Success. Check your email for recover your password');
           setTimeout(() => this.appService.setRequestStatus(false));
           this.router.navigate(['/login']);
-        },
-        err => {
-          setTimeout(() => this.appService.setRequestStatus(false));
-          alert(err.error.message);
-        });
-  }
-
-  postTokenForCheckValid(token: string, userId: string) {
-    this.http.post('http://localhost:8081/api/auth/checkToken', {userId, token})
-      .subscribe((m) => {
-          this.showRecoverPageStatus = true;
-        },
-        err => {
-          alert(err.error.message);
         });
   }
 }

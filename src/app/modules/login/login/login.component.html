@@ -3,9 +3,9 @@
     <h2 class="sr-only">Login Form</h2>
     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
     <div
-      [ngClass]="(loginForma.controls.username.invalid) ? 'error' : 'form-group' ">
-      <input class="form-control " type="text" formControlName="username"
-             placeholder="Login">
+      [ngClass]="(loginForma.controls.email.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control " type="text" formControlName="email"
+             placeholder="Email">
     </div>
     <div
       [ngClass]="(loginForma.controls.password.invalid) ? 'error' : 'form-group' ">

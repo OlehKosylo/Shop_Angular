@@ -12,7 +12,7 @@ export class RecoverPasswordComponent implements OnInit {
 
   public recoverPassForm: FormGroup;
 
-  userId: string;
+  token: string;
 
   constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute, public forgotPassword: ForgotPasswordService) {
     this.recoverPassForm = formBuilder.group({
@@ -23,13 +23,11 @@ export class RecoverPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.userId = params.userId;
-      const token = params.token;
-      this.forgotPassword.postTokenForCheckValid(token, this.userId);
+       this.token = params.token;
     });
   }
 
   postDataForRecoverPass() {
-    this.forgotPassword.postDataForRecoverPass(this.recoverPassForm.value, this.userId);
+    this.forgotPassword.postDataForRecoverPass(this.recoverPassForm.value, this.token);
   }
 }

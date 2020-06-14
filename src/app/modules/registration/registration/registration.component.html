@@ -4,14 +4,8 @@
     <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
 
     <div
-      [ngClass]="(registrationForma.controls.username.invalid) ? 'error' : 'form-group' ">
-      <input class="form-control" type="text" formControlName="username"
-             placeholder="Login">
-    </div>
-
-    <div
-      [ngClass]="(registrationForma.controls.mail.invalid) ? 'error' : 'form-group' ">
-      <input class="form-control" type="text" formControlName="mail" placeholder="Email">
+      [ngClass]="(registrationForma.controls.email.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="email" placeholder="Email">
     </div>
 
     <div
@@ -21,7 +15,7 @@
     </div>
 
     <div
-      [ngClass] ="registrationForma.controls.password.touched && (registrationForma.controls.password.value != registrationForma.controls.duplicate_password.value
+      [ngClass]="registrationForma.controls.password.touched && (registrationForma.controls.password.value != registrationForma.controls.duplicate_password.value
       || registrationForma.controls.password.invalid || registrationForma.controls.duplicate_password.invalid) ? 'error' : 'form-group' ">
 
       <input class="form-control" type="password" formControlName="duplicate_password"
@@ -29,9 +23,15 @@
     </div>
 
     <div
-      [ngClass]="(registrationForma.controls.name_surname.invalid) ? 'error' : 'form-group' ">
-      <input class="form-control" type="text" formControlName="name_surname"
-             placeholder="Name and Surname">
+      [ngClass]="(registrationForma.controls.name.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="name"
+             placeholder="Name">
+    </div>
+
+    <div
+      [ngClass]="(registrationForma.controls.surname.invalid) ? 'error' : 'form-group' ">
+      <input class="form-control" type="text" formControlName="surname"
+             placeholder="Surname">
     </div>
 
     <div
@@ -41,18 +41,21 @@
     </div>
 
     <div>
-      <div class="select mt-2 ml-3 lightSilver opacity09">
-        <label class="lighter mr-2">Sex </label>
-        <select formControlName="sex">
-          <option >Man</option>
-          <option>Woman ❤️‍</option>
-        </select>
-      </div>
-    </div>
+      <button (click)="setAdminMode(!adminMode)" type="button">
+        <span *ngIf="!adminMode">Admin mode</span>
+        <span *ngIf="adminMode">Close</span>
+      </button>
 
+      <div *ngIf="adminMode">
+        <input class="form-control" type="password" formControlName="passwordForStatus"
+               placeholder="Password for mode">
+      </div>
+
+    </div>
 
     <div class="frm-group">
       <button [disabled]="registrationForma.invalid" class="btn btn-primary btn-block" type="submit">Sign Up</button>
     </div>
-    <a (click)="navigate()" class="forgot cursor">Forgot your email or password?</a></form>
+    <a (click)="navigate()" class="forgot cursor">Forgot your email or password?</a>
+  </form>
 </div>

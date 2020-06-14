@@ -4,46 +4,28 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './components/app/app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {MainPageResolverService} from './modules/main-page/services/resolvers/main-page.resolver.service';
-import {TokenInterceptor} from './TokenInterceptor.interceptor';
-import {ProfilePageResolverService} from './modules/profile-page/services/resolvers/profile-page.resolver.service';
-import {AngularFireModule} from '@angular/fire';
-import {environment} from '../environments/environment';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {MyCoursesResolverService} from './modules/main-page/services/resolvers/my-courses.resolver.service';
-import {MyCourseResolverService} from './modules/main-page/services/resolvers/my-course.resolver.service';
 import {ActivateMailComponent} from './components/activate-mail/activate-mail.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import {Interceptor} from './interceptor.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ActivateMailComponent,
+    ActivateMailComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule,
     FlexLayoutModule,
-    MatProgressSpinnerModule,
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forRoot()
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: Interceptor,
       multi: true
-    },
-    MainPageResolverService, ProfilePageResolverService,
-    MyCoursesResolverService, MyCourseResolverService],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

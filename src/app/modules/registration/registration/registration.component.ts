@@ -9,31 +9,49 @@ import {Router} from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  public adminMode = false;
 
   public registrationForma: FormGroup;
 
   constructor(private formBuilder: FormBuilder, public registrationService: RegistrationService,
               private router: Router) {
     this.registrationForma = formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-      mail: ['', [Validators.required, Validators.email]],
-      name_surname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(300)]],
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(300)]],
+      surname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(300)]],
       age: ['', [Validators.required, Validators.min(6), Validators.max(99)]],
-      sex: ['', [Validators.required]],
       duplicate_password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+      passwordForStatus: ['']
     });
   }
 
   ngOnInit(): void {
   }
 
+
   postDataForRegistration() {
-    this.registrationService.postRequestForRegistration(this.registrationForma.value);
+
+    const sendValue = {
+      password: this.registrationForma.value.password,
+      email: this.registrationForma.value.email,
+      name: this.registrationForma.value.name,
+      surname: this.registrationForma.value.surname,
+      age: this.registrationForma.value.age,
+      passwordForStatus: (this.registrationForma.value.passwordForStatus === '' && '12345678'
+        || this.registrationForma.value.passwordForStatus)
+    };
+
+    this.registrationService.postRequestForRegistration(sendValue);
+
     this.registrationForma.reset();
   }
 
   navigate() {
     this.router.navigate(['/forgot']);
+  }
+
+  setAdminMode(value) {
+    this.adminMode = value;
   }
 }

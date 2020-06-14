@@ -1,8 +1,8 @@
 export interface UserModel {
-  username: string;
+  email: string;
   password: string;
-  mail: string;
-  name_surname: string;
+  name: string;
+  surname: string;
   age: number;
-  sex: string;
+  passwordForStatus: string;
 }

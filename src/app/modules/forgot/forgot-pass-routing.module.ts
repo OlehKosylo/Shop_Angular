@@ -6,7 +6,7 @@ import {ForgotPasswordComponent} from './components/forgot-password/forgot-passw
 
 const routes: Routes = [
   {path: '', component: ForgotPasswordComponent},
-  {path: ':id/:token', component: RecoverPasswordComponent},
+  {path: 'token', component: RecoverPasswordComponent},
 ];
 
 @NgModule({
