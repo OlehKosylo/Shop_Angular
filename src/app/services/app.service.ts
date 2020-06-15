@@ -10,6 +10,7 @@ import {TokensModel} from '../modules/login/models/Tokens.model';
 export class AppService {
   userIn = false;
   requestStatus = false;
+  userId: number;
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
   }
@@ -20,7 +21,11 @@ export class AppService {
       return this.http.get<any>(`http://localhost:3333/auth/activateAccount/${token}`)
         .subscribe((m) => {
           },
-          err => alert(err.error.message));
+          err => {
+            alert(err.error.message);
+            this.setRequestStatus(false);
+          }
+        );
     });
   }
 
@@ -49,4 +54,7 @@ export class AppService {
     this.userIn = value;
   }
 
+  setUserId(userId: number) {
+    this.userId = userId;
+  }
 }

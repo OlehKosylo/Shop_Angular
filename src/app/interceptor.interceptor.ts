@@ -17,11 +17,16 @@ export class Interceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
-    request = this.header(request);
 
-    return next.handle(request).pipe(catchError(error => {
-      return this.handleResponseError(error, request, next);
-    }));
+    if (this.appService.userIn) {
+      request = this.header(request);
+
+      return next.handle(request).pipe(catchError(error => {
+        return this.handleResponseError(error, request, next);
+      }));
+    } else {
+      return next.handle(request);
+    }
   }
 
   header(request) {
@@ -70,10 +75,11 @@ export class Interceptor implements HttpInterceptor {
           }
         })
       );
-    } else {
-      this.appService.setRequestStatus(false);
-      alert(error.error.message);
     }
+    // else {
+    //   this.appService.setRequestStatus(false);
+    //   alert(error.error.message);
+    // }
 
     return throwError(error);
   }

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AppService} from '../../services/app.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,21 +9,20 @@ import {AppService} from '../../services/app.service';
 })
 export class AppComponent {
 
-  constructor(public appService: AppService) {
-    const userId = localStorage.getItem('userId');
+  constructor(public appService: AppService, public router: Router) {
+    const userId = localStorage.getItem('user_id');
     if (userId) {
       appService.setUserIn(true);
+      appService.setUserId(+userId);
     }
   }
 
   goOut() {
     this.appService.setUserIn(false);
-    // localStorage.removeItem('Token');
-    // localStorage.removeItem('userId');
-  }
-
-  refresh() {
-    this.appService.refreshTokens();
+    this.appService.logout();
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
   }
 
 }

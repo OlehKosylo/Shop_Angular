@@ -19,9 +19,14 @@ export class LoginService {
         message => {
           localStorage.setItem('access_token', message.access_token);
           localStorage.setItem('refresh_token', message.refresh_token);
+          localStorage.setItem('user_id', message.userId);
 
           this.router.navigate(['/']);
           this.appService.setUserIn(true);
+        },
+        error => {
+          alert(error.error.message);
+          this.appService.setRequestStatus(false);
         }
       );
   }

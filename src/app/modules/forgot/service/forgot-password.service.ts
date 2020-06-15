@@ -19,6 +19,10 @@ export class ForgotPasswordService {
           alert('Success');
           setTimeout(() => this.appService.setRequestStatus(false));
           this.router.navigate(['/login']);
+        },
+        error => {
+          alert(error.error.message);
+          this.appService.setRequestStatus(false);
         });
   }
 
@@ -29,6 +33,10 @@ export class ForgotPasswordService {
           alert('Success. Check your email for recover your password');
           setTimeout(() => this.appService.setRequestStatus(false));
           this.router.navigate(['/login']);
+        },
+        error => {
+          alert(error.error.message);
+          this.appService.setRequestStatus(false);
         });
   }
 }

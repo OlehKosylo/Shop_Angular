@@ -18,6 +18,10 @@ export class RegistrationService {
       .subscribe(res => {
           alert('Successes. Check your email for activating');
           this.appService.setRequestStatus(false);
+        },
+        error => {
+          alert(error.error.message);
+          this.appService.setRequestStatus(false);
         });
   }
 
