@@ -1,3 +1,8 @@
-<div>
 
+<div *ngFor="let phone of phonesArray">
+  {{phone.title}}
+  <br>
+  {{phone.description}}
+
+  <a routerLink="{{phone.id}}">Open</a>
 </div>

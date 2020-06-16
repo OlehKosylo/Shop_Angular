@@ -1,25 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {PhoneService} from '../../services/phone.service';
+import {NotebookService} from '../../services/notebook.service';
 import {AppService} from '../../../../services/app.service';
 import {ActivatedRoute} from '@angular/router';
-import {PhoneModel} from '../../models/Phone.model';
+import {NotebookModel} from '../../models/Notebook.model';
 import {StripeService} from '../../../Stripe/stripe.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-phone',
-  templateUrl: './phone.component.html',
-  styleUrls: ['./phone.component.css']
+  templateUrl: './notebook.component.html',
+  styleUrls: ['./notebook.component.css']
 })
-export class PhoneComponent implements OnInit {
+export class NotebookComponent implements OnInit {
 
   statusBuyComponent = true;
 
-  phone: PhoneModel;
+  notebook: NotebookModel;
 
   public orderForma: FormGroup;
 
-  constructor(private phoneService: PhoneService, private appService: AppService,
+  constructor(private appService: AppService,
               private route: ActivatedRoute, private stripeService: StripeService,
               private formBuilder: FormBuilder) {
     this.orderForma = formBuilder.group({
@@ -30,7 +30,7 @@ export class PhoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe(
-      res => (this.phone = res.phoneResolverService,
+      res => (this.notebook = res.notebookResolverService,
           setTimeout(() => this.appService.setRequestStatus(false))
       ),
       err => (
@@ -45,10 +45,10 @@ export class PhoneComponent implements OnInit {
 
     this.stripeService.openCheckout({
       user_id: this.appService.userId,
-      good_type: this.phone.type_of_goods,
-      good_id: this.phone.id,
+      good_type: this.notebook.type_of_goods,
+      good_id: this.notebook.id,
       count: +count || 1,
-      price: this.phone.price * (count || 1),
+      price: this.notebook.price * (count || 1),
       where_send: whereSend
     });
   }

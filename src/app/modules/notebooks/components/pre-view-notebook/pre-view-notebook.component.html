@@ -1,0 +1,8 @@
+
+<div *ngFor="let notebook of notebooksArray">
+  {{notebook.title}}
+  <br>
+  {{notebook.description}}
+
+  <a routerLink="{{notebook.id}}">Open</a>
+</div>

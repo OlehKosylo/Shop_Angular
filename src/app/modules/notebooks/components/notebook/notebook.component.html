@@ -1,13 +1,13 @@
 <div>
-  {{phone.title}}
-  {{phone.description}}
-  {{phone.price}}
-  {{phone.screen_diagonal}}
-  {{phone.camera_mp}}
-  <img style="width: 150px" src='{{phone.imageURL}}' alt="">
-  {{phone.number_of_cores}}
-  {{phone.inner_memory}}
-
+  {{notebook.title}}
+  <img style="width: 150px" src='{{notebook.imageURL}}' alt="">
+  {{notebook.description}}
+  {{notebook.price}}
+  {{notebook.screen_diagonal}}
+  {{notebook.processor}}
+  {{notebook.ram}}
+  {{notebook.storage_capacity}}
+  {{notebook.graphics_card}}
 
   <button (click)="setStatusBuyComponent(!statusBuyComponent)">
     <span *ngIf="statusBuyComponent">Buy</span>

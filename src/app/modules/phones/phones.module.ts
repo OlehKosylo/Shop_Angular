@@ -5,13 +5,16 @@ import { PhonesRoutingModule } from './phones-routing.module';
 import { PhoneComponent } from './components/phone/phone.component';
 import { PhoneContainerComponent } from './components/phone-container/phone-container.component';
 import { PreViewPhoneComponent } from './components/pre-view-phone/pre-view-phone.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [PhoneComponent, PhoneContainerComponent, PreViewPhoneComponent],
   imports: [
     CommonModule,
-    PhonesRoutingModule
-  ]
+    PhonesRoutingModule,
+    ReactiveFormsModule
+  ],
+  exports: [],
 })
 export class PhonesModule { }

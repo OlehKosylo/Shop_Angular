@@ -1,27 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {PhoneService} from '../../services/phone.service';
 import {AppService} from '../../../../services/app.service';
 import {ActivatedRoute} from '@angular/router';
-import {PhoneModel} from '../../models/Phone.model';
+import {TVModel} from '../../models/TV.model';
 import {StripeService} from '../../../Stripe/stripe.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-phone',
-  templateUrl: './phone.component.html',
-  styleUrls: ['./phone.component.css']
+  templateUrl: './tv.component.html',
+  styleUrls: ['./tv.component.css']
 })
-export class PhoneComponent implements OnInit {
+export class TvComponent implements OnInit {
 
   statusBuyComponent = true;
 
-  phone: PhoneModel;
+  tv: TVModel;
 
   public orderForma: FormGroup;
 
-  constructor(private phoneService: PhoneService, private appService: AppService,
-              private route: ActivatedRoute, private stripeService: StripeService,
-              private formBuilder: FormBuilder) {
+  constructor(private appService: AppService, private route: ActivatedRoute,
+              private stripeService: StripeService, private formBuilder: FormBuilder) {
     this.orderForma = formBuilder.group({
       whereSend: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(75)]],
       count: []
@@ -30,7 +28,7 @@ export class PhoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe(
-      res => (this.phone = res.phoneResolverService,
+      res => (this.tv = res.tvResolverService,
           setTimeout(() => this.appService.setRequestStatus(false))
       ),
       err => (
@@ -45,10 +43,10 @@ export class PhoneComponent implements OnInit {
 
     this.stripeService.openCheckout({
       user_id: this.appService.userId,
-      good_type: this.phone.type_of_goods,
-      good_id: this.phone.id,
+      good_type: this.tv.type_of_goods,
+      good_id: this.tv.id,
       count: +count || 1,
-      price: this.phone.price * (count || 1),
+      price: this.tv.price * (count || 1),
       where_send: whereSend
     });
   }

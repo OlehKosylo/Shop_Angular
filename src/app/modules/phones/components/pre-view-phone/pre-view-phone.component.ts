@@ -7,15 +7,9 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PreViewPhoneComponent implements OnInit {
 
-  @Input() id;
-  @Input() title;
-  @Input() price;
-  @Input() description;
-  @Input() imageURL;
-  @Input() typeOfGoods;
+  @Input() phonesArray;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }

@@ -20,6 +20,7 @@ export class LoginService {
           localStorage.setItem('access_token', message.access_token);
           localStorage.setItem('refresh_token', message.refresh_token);
           localStorage.setItem('user_id', message.userId);
+          this.appService.userId = message.userId;
 
           this.router.navigate(['/']);
           this.appService.setUserIn(true);
