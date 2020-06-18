@@ -22,6 +22,7 @@ export class AppComponent {
     localStorage.removeItem('user_id');
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+    window.location.reload();
   }
 
   navigate(value: string) {

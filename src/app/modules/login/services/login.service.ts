@@ -21,6 +21,10 @@ export class LoginService {
           localStorage.setItem('refresh_token', message.refresh_token);
           localStorage.setItem('user_id', message.userId);
           this.appService.userId = message.userId;
+          if (message.user_status === 'ADMIN') {
+            this.appService.adminStatus = true;
+          }
+
 
           this.router.navigate(['/']);
           this.appService.setUserIn(true);

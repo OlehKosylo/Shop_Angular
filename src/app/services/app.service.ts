@@ -11,6 +11,7 @@ export class AppService {
   userIn = false;
   requestStatus = false;
   userId: number;
+  adminStatus = false;
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
   }

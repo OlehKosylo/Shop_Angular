@@ -13,13 +13,16 @@
               class="glyphicon glyphicon-log-in"></span>
               Login</a></li>
 
-            <li *ngIf="appService.userIn == true"><a (click)="navigate('profile')"><span
-              class=""></span>
-              Profile</a></li>
+            <li *ngIf="appService.userIn == true"><a (click)="navigate('profile')">Profile</a></li>
+
+            <li *ngIf="appService.userIn == true && appService.adminStatus">
+              <a (click)="navigate('admin')">Admin mode</a>
+            </li>
 
             <li *ngIf="appService.userIn == true" (click)="goOut()"><a routerLink="login"><span
               class="glyphicon glyphicon-log-in"></span>
               Log out</a></li>
+
           </ul>
         </div>
       </div>
