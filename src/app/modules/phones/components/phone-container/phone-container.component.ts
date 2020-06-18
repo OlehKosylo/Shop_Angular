@@ -13,12 +13,13 @@ export class PhoneContainerComponent implements OnInit {
 
   phonesArray: PreViewPhoneModel[] = [];
 
-  constructor(private phoneService: PhoneService, private appService: AppService, private route: ActivatedRoute) {
+  constructor(private phoneService: PhoneService, public appService: AppService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.data.subscribe(
       phones => (this.phonesArray = phones.phonesResolverService,
+          console.log(phones),
           setTimeout(() => this.appService.setRequestStatus(false))
       ),
       err => (

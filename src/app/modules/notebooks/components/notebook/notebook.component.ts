@@ -19,7 +19,7 @@ export class NotebookComponent implements OnInit {
 
   public orderForma: FormGroup;
 
-  constructor(private appService: AppService,
+  constructor(public appService: AppService,
               private route: ActivatedRoute, private stripeService: StripeService,
               private formBuilder: FormBuilder) {
     this.orderForma = formBuilder.group({

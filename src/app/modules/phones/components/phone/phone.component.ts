@@ -19,7 +19,7 @@ export class PhoneComponent implements OnInit {
 
   public orderForma: FormGroup;
 
-  constructor(private phoneService: PhoneService, private appService: AppService,
+  constructor(private phoneService: PhoneService, public appService: AppService,
               private route: ActivatedRoute, private stripeService: StripeService,
               private formBuilder: FormBuilder) {
     this.orderForma = formBuilder.group({

@@ -29,6 +29,21 @@ export class AppService {
     });
   }
 
+  changePassword() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      const token = params.token;
+      return this.http.get<any>(`http://localhost:3333/user/password?token=${token}`)
+        .subscribe((m) => {
+            alert('Success!');
+          },
+          err => {
+            alert(err.error.message);
+            this.setRequestStatus(false);
+          }
+        );
+    });
+  }
+
   public refreshTokens(): Observable<TokensModel> {
     const {refresh_token} = this.getTokens();
     return this.http.post<TokensModel>(' http://localhost:3333/auth/refresh', {refresh_token});

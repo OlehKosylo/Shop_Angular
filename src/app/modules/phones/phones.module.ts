@@ -4,8 +4,9 @@ import { CommonModule } from '@angular/common';
 import { PhonesRoutingModule } from './phones-routing.module';
 import { PhoneComponent } from './components/phone/phone.component';
 import { PhoneContainerComponent } from './components/phone-container/phone-container.component';
-import { PreViewPhoneComponent } from './components/pre-view-phone/pre-view-phone.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {PreViewPhoneComponent} from './components/pre-view-phone/pre-view-phone.component';
+
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     PhonesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [],
 })

@@ -1,0 +1,68 @@
+<div>
+  {{profileInfo | json}}
+
+  <br>
+
+  <button (click)="setStatusChangeForm(!statusChangeForm)">
+    <span *ngIf="!statusChangeForm">Change data</span>
+    <span *ngIf="statusChangeForm">Go back</span>
+  </button>
+
+
+  <button (click)="setStatusChangePasswordForm(!statusChangePasswordForm)">
+    <span *ngIf="!statusChangePasswordForm">Change password</span>
+    <span *ngIf="statusChangePasswordForm">Go back</span>
+  </button>
+
+  <div *ngIf="statusChangeForm" class="login-dark">
+    <form [formGroup]="changeProfileForma" (submit)="changeProfile()">
+      <div
+        [ngClass]="(changeProfileForma.controls.name.invalid) ? 'error' : 'form-group' ">
+        <input class="form-control " type="text" formControlName="name" placeholder="Name">
+      </div>
+      <div
+        [ngClass]="(changeProfileForma.controls.surname.invalid) ? 'error' : 'form-group' ">
+        <input class="form-control" type="text" formControlName="surname" placeholder="Surname">
+      </div>
+      <div
+        [ngClass]="(changeProfileForma.controls.age.invalid) ? 'error' : 'form-group' ">
+        <input class="form-control" type="text" formControlName="age" placeholder="Age">
+      </div>
+      <div class="frm-group">
+        <button [disabled]="changeProfileForma.invalid" class="btn btn-primary btn-block" type="submit">Change</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div *ngIf="statusChangePasswordForm" class="login-dark">
+    <form [formGroup]="changePasswordForma" (submit)="changePassword()">
+
+      <div
+        [ngClass]="(changePasswordForma.controls.oldPassword.invalid) ? 'error' : 'form-group' ">
+        <input class="form-control" type="password" formControlName="oldPassword"
+               placeholder="Old Password">
+      </div>
+
+      <div
+        [ngClass]="(changePasswordForma.controls.password.invalid) ? 'error' : 'form-group' ">
+        <input class="form-control" type="password" formControlName="password"
+               placeholder="New Password">
+      </div>
+
+      <div
+        [ngClass]="changePasswordForma.controls.password.touched && (changePasswordForma.controls.password.value != changePasswordForma.controls.duplicate_password.value
+      || changePasswordForma.controls.password.invalid || changePasswordForma.controls.duplicate_password.invalid) ? 'error' : 'form-group' ">
+
+        <input class="form-control" type="password" formControlName="duplicate_password"
+               placeholder="Dublicate new password">
+      </div>
+
+
+      <div class="frm-group">
+        <button [disabled]="changePasswordForma.invalid" class="btn btn-primary btn-block" type="submit">OK</button>
+      </div>
+
+    </form>
+  </div>
+</div>

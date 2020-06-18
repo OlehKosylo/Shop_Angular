@@ -12,7 +12,7 @@ export class TvContainerComponent implements OnInit {
 
   tvsArray: PreViewTVModel[] = [];
 
-  constructor(private appService: AppService, private route: ActivatedRoute) {
+  constructor(public appService: AppService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {

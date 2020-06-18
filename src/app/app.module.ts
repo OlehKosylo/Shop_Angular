@@ -15,6 +15,7 @@ import {NotebookResolverService} from './modules/notebooks/services/resolvers/no
 import {NotebooksResolverService} from './modules/notebooks/services/resolvers/notebooks.resolver.service';
 import {TvsResolverService} from './modules/tv/services/resolvers/tvs.resolver.service';
 import {TvResolverService} from './modules/tv/services/resolvers/tv.resolver.service';
+import {GoodsResolverService} from './modules/main/services/resolvers/goods.resolver.service';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {TvResolverService} from './modules/tv/services/resolvers/tv.resolver.ser
     FormBuilder,
     PhonesResolverService, PhoneResolverService,
     NotebookResolverService, NotebooksResolverService,
-    TvsResolverService, TvResolverService
+    TvsResolverService, TvResolverService,
+    GoodsResolverService
   ],
   bootstrap: [AppComponent]
 })

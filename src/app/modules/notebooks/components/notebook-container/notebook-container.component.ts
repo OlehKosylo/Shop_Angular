@@ -12,12 +12,12 @@ export class NotebookContainerComponent implements OnInit {
 
   notebooksArray: PreViewNotebookModel[] = [];
 
-  constructor(private appService: AppService, private route: ActivatedRoute) {
+  constructor(public appService: AppService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.data.subscribe(
-      notebooks => (this.notebooksArray = notebooks.notebooksResolverService,
+      res => (this.notebooksArray = res.notebooksResolverService,
           setTimeout(() => this.appService.setRequestStatus(false))
       ),
       err => (

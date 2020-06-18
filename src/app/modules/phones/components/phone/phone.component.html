@@ -9,7 +9,9 @@
   {{phone.inner_memory}}
 
 
-  <button (click)="setStatusBuyComponent(!statusBuyComponent)">
+  <button (click)="setStatusBuyComponent(!statusBuyComponent)"
+  [disabled]="!appService.userIn"
+  [title]="appService.userIn || 'Please log in for buy'">
     <span *ngIf="statusBuyComponent">Buy</span>
     <span *ngIf="!statusBuyComponent">Back</span>
   </button>

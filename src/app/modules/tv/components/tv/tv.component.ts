@@ -18,7 +18,7 @@ export class TvComponent implements OnInit {
 
   public orderForma: FormGroup;
 
-  constructor(private appService: AppService, private route: ActivatedRoute,
+  constructor(public appService: AppService, private route: ActivatedRoute,
               private stripeService: StripeService, private formBuilder: FormBuilder) {
     this.orderForma = formBuilder.group({
       whereSend: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(75)]],

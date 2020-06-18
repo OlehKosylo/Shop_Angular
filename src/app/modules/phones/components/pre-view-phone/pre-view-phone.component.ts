@@ -1,4 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {PreViewPhoneModel} from '../../../phones/models/preViewPhone.model';
+
 
 @Component({
   selector: 'app-pre-view-phone',
@@ -7,11 +10,15 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class PreViewPhoneComponent implements OnInit {
 
-  @Input() phonesArray;
+  @Input() phonesArray: PreViewPhoneModel[];
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
+  navigate(id: number) {
+    this.router.navigate([(this.phonesArray[0].type_of_goods).toLocaleLowerCase() + '/' + id]);
+  }
 }

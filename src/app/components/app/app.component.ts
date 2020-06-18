@@ -8,7 +8,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
   constructor(public appService: AppService, public router: Router) {
     const userId = localStorage.getItem('user_id');
     if (userId) {
@@ -24,5 +23,10 @@ export class AppComponent {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
   }
+
+  navigate(value: string) {
+    this.router.navigate([value]);
+  }
+
 
 }

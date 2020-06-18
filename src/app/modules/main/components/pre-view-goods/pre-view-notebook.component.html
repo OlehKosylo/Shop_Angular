@@ -1,0 +1,11 @@
+
+<div *ngFor="let good of goodsArray">
+  {{good.title}}
+  <br>
+  {{good.description}}
+
+  <a (click)="navigate(good.id)">Open</a>
+
+
+</div>
+
