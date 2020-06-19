@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../services/app.service';
-import {PreViewNotebookModel} from '../../models/preViewNotebook.model';
 import {ActivatedRoute} from '@angular/router';
+import {NotebookService} from '../../services/notebook.service';
 
 @Component({
   selector: 'app-phone-container',
@@ -10,14 +10,12 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class NotebookContainerComponent implements OnInit {
 
-  notebooksArray: PreViewNotebookModel[] = [];
-
-  constructor(public appService: AppService, private route: ActivatedRoute) {
+  constructor(public appService: AppService, private route: ActivatedRoute, public notebookService: NotebookService) {
   }
 
   ngOnInit(): void {
     this.route.data.subscribe(
-      res => (this.notebooksArray = res.notebooksResolverService,
+      res => (this.notebookService.notebooksArray = res.notebooksResolverService,
           setTimeout(() => this.appService.setRequestStatus(false))
       ),
       err => (

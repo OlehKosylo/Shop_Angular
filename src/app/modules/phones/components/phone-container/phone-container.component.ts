@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PhoneService} from '../../services/phone.service';
 import {AppService} from '../../../../services/app.service';
-import {PreViewPhoneModel} from '../../models/preViewPhone.model';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -11,15 +10,12 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class PhoneContainerComponent implements OnInit {
 
-  phonesArray: PreViewPhoneModel[] = [];
-
-  constructor(private phoneService: PhoneService, public appService: AppService, private route: ActivatedRoute) {
+  constructor(public phoneService: PhoneService, public appService: AppService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.data.subscribe(
-      phones => (this.phonesArray = phones.phonesResolverService,
-          console.log(phones),
+      phones => (this.phoneService.phonesArray = phones.phonesResolverService,
           setTimeout(() => this.appService.setRequestStatus(false))
       ),
       err => (

@@ -17,7 +17,6 @@ import {TvsResolverService} from './modules/tv/services/resolvers/tvs.resolver.s
 import {TvResolverService} from './modules/tv/services/resolvers/tv.resolver.service';
 import {GoodsResolverService} from './modules/main/services/resolvers/goods.resolver.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,

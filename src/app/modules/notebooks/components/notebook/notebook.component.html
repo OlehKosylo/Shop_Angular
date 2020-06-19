@@ -17,7 +17,7 @@
 
   <div *ngIf="!statusBuyComponent">
 
-    <form [formGroup]="orderForma" (submit)="buyPhone()">
+    <form [formGroup]="orderForma" (submit)="buyNotebook()">
       <div
         [ngClass]="(orderForma.controls.whereSend.invalid) ? 'error' : 'form-group' ">
         <input class="form-control " type="text" formControlName="whereSend"
@@ -40,6 +40,86 @@
         <button [disabled]="orderForma.invalid" class="btn btn-primary btn-block" type="submit">OK</button>
       </div>
 
+    </form>
+
+  </div>
+
+
+  <div *ngIf="appService.adminStatus">
+    <button (click)="setStatusUpdateForm(!statusUpdateForm)">
+      <span *ngIf="!statusUpdateForm">Update</span>
+      <span *ngIf="statusUpdateForm">Back</span>
+    </button>
+
+    <form *ngIf="statusUpdateForm" [formGroup]="updateForma" (submit)="update()">
+      <div
+        [ngClass]="(updateForma.controls.title.invalid) ? 'error' : 'form-group' ">
+        <label>Title</label>
+        <input class="form-control " type="text" formControlName="title"
+               placeholder="Title">
+      </div>
+
+      <div
+        [ngClass]="(updateForma.controls.description.invalid) ? 'error' : 'form-group' ">
+        <label>Description</label>
+        <input class="form-control " type="text" formControlName="description"
+               placeholder="Description">
+      </div>
+
+      <div
+        [ngClass]="(updateForma.controls.price.invalid) ? 'error' : 'form-group' ">
+        <label>Price</label>
+        <input class="form-control " type="text" formControlName="price"
+               placeholder="Price">
+      </div>
+
+      <div
+        [ngClass]="(updateForma.controls.screen_diagonal.invalid) ? 'error' : 'form-group' ">
+        <label>Screen diagonal</label>
+        <input class="form-control " type="text" formControlName="screen_diagonal"
+               placeholder="Screen diagonal">
+      </div>
+
+      <div
+        [ngClass]="(updateForma.controls.processor.invalid) ? 'error' : 'form-group' ">
+        <label>Processor</label>
+        <input class="form-control " type="text" formControlName="processor"
+               placeholder="Processor">
+      </div>
+
+      <div
+        [ngClass]="(updateForma.controls.ram.invalid) ? 'error' : 'form-group' ">
+        <label>RAM</label>
+        <input class="form-control " type="text" formControlName="ram"
+               placeholder="RAM">
+      </div>
+
+      <div
+        [ngClass]="(updateForma.controls.storage_capacity.invalid) ? 'error' : 'form-group' ">
+        <label>Storage capacity</label>
+        <input class="form-control " type="text" formControlName="storage_capacity"
+               placeholder="Storage capacity">
+      </div>
+
+      <div
+        [ngClass]="(updateForma.controls.graphics_card.invalid) ? 'error' : 'form-group' ">
+        <label>Graphics card</label>
+        <input class="form-control " type="text" formControlName="graphics_card"
+               placeholder="Graphics card">
+      </div>
+
+      <div>
+        <label>Photo </label>
+        <div>
+          <label for="files" class="w-100 bg-white silver">Load photo</label>
+        </div>
+        <input style="visibility:hidden;" id="files" formControlName="file" type="file"
+               (change)="onFileSelected($event)">
+      </div>
+
+      <div class="frm-group">
+        <button [disabled]="updateForma.invalid" class="btn btn-primary btn-block" type="submit">OK</button>
+      </div>
     </form>
 
   </div>

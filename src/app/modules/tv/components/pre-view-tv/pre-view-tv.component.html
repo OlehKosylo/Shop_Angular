@@ -5,4 +5,8 @@
   {{tv.description}}
 
   <a (click)="navigate(tv.id)">Open</a>
+
+  <br>
+
+  <a *ngIf="appService.adminStatus" (click)="deleteTV(+tv.id)">Delete</a>
 </div>

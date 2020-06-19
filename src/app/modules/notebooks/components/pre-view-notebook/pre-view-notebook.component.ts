@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AppService} from '../../../../services/app.service';
+import {NotebookService} from '../../services/notebook.service';
 
 @Component({
   selector: 'app-pre-view-notebook',
@@ -10,7 +12,7 @@ export class PreViewNotebookComponent implements OnInit {
 
   @Input() notebooksArray;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public appService: AppService, public notebookService: NotebookService) {
   }
 
   ngOnInit(): void {
@@ -18,6 +20,10 @@ export class PreViewNotebookComponent implements OnInit {
 
   navigate(id: number) {
     this.router.navigate([(this.notebooksArray[0].type_of_goods).toLocaleLowerCase() + '/' + id]);
+  }
+
+  deleteNotebook(id: number) {
+    this.notebookService.deleteNotebook(id);
   }
 
 }

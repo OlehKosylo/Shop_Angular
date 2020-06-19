@@ -36,6 +36,7 @@ export class AppService {
       return this.http.get<any>(`http://localhost:3333/user/password?token=${token}`)
         .subscribe((m) => {
             alert('Success!');
+            this.setRequestStatus(false);
           },
           err => {
             alert(err.error.message);
@@ -53,6 +54,10 @@ export class AppService {
   public logout() {
     const {access_token} = this.getTokens();
     return this.http.post(' http://localhost:3333/auth/logout', {access_token});
+  }
+
+  public getUserStatus() {
+    return this.http.get<string>(`http://localhost:3333/user/status?userId=${this.userId}`);
   }
 
   public getTokens(): TokensModel {

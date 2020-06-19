@@ -6,6 +6,8 @@
 
   <a (click)="navigate(notebook.id)">Open</a>
 
-  hello
+  <br>
+
+  <a *ngIf="appService.adminStatus" (click)="deleteNotebook(+notebook.id)">Delete</a>
 </div>
 

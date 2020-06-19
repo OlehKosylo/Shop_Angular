@@ -14,6 +14,12 @@ export class AppComponent {
       appService.setUserIn(true);
       appService.setUserId(+userId);
     }
+
+    if (appService.userIn) {
+      this.appService.getUserStatus().subscribe(
+        res => res === 'ADMIN' && (this.appService.adminStatus = true)
+      );
+    }
   }
 
   goOut() {

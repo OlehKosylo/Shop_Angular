@@ -1,1 +1,18 @@
-<p>admin works!</p>
+<div>
+
+  <div>
+    <button (click)="navigate('/')">Main admin page</button>
+    <br>
+    <button (click)="navigate('phone')">Create phone</button>
+    <br>
+    <button (click)="navigate('notebook')">Create notebook</button>
+    <br>
+    <button (click)="navigate('tv')">Create tv</button>
+  </div>
+
+
+  <div>
+   <router-outlet></router-outlet>
+  </div>
+
+</div>

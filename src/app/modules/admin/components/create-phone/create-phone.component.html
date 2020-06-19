@@ -1,0 +1,69 @@
+<div>
+  <form [formGroup]="createPhoneForm" (submit)="create()">
+    <div
+      [ngClass]="(createPhoneForm.controls.title.invalid) ? 'error' : 'form-group' ">
+      <label>Title</label>
+      <input class="form-control " type="text" formControlName="title"
+             placeholder="Title">
+    </div>
+
+    <div
+      [ngClass]="(createPhoneForm.controls.description.invalid) ? 'error' : 'form-group' ">
+      <label>Description</label>
+      <input class="form-control " type="text" formControlName="description"
+             placeholder="Description">
+    </div>
+
+    <div
+      [ngClass]="(createPhoneForm.controls.price.invalid) ? 'error' : 'form-group' ">
+      <label>Price</label>
+      <input class="form-control " type="text" formControlName="price"
+             placeholder="Price">
+    </div>
+
+    <div
+      [ngClass]="(createPhoneForm.controls.screen_diagonal.invalid) ? 'error' : 'form-group' ">
+      <label>Screen diagonal</label>
+      <input class="form-control " type="text" formControlName="screen_diagonal"
+             placeholder="Screen diagonal">
+    </div>
+
+    <div
+      [ngClass]="(createPhoneForm.controls.camera_mp.invalid) ? 'error' : 'form-group' ">
+      <label>Camera mp</label>
+      <input class="form-control " type="text" formControlName="camera_mp"
+             placeholder="Camera mp">
+    </div>
+
+    <div
+      [ngClass]="(createPhoneForm.controls.number_of_cores.invalid) ? 'error' : 'form-group' ">
+      <label>Number of cores</label>
+      <input class="form-control " type="text" formControlName="number_of_cores"
+             placeholder="Number of cores">
+    </div>
+
+    <div
+      [ngClass]="(createPhoneForm.controls.inner_memory.invalid) ? 'error' : 'form-group' ">
+      <label>Inner memory</label>
+      <input class="form-control " type="text" formControlName="inner_memory"
+             placeholder="Inner memory">
+    </div>
+
+    <div>
+      <div>
+        <label>Photo </label>
+        <div>
+          <label for="files" class="w-100 bg-white silver">Load photo</label>
+        </div>
+        <input style="visibility:hidden;" id="files" formControlName="file" type="file"
+               (change)="onFileSelected($event)">
+      </div>
+    </div>
+
+
+    <div class="frm-group">
+      <button [disabled]="createPhoneForm.invalid" class="btn btn-primary btn-block" type="submit">OK</button>
+    </div>
+  </form>
+</div>
+

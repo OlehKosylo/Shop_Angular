@@ -1,9 +1,9 @@
 export interface PhoneModel {
-    id: number;
+    id?: number;
     title: string;
     description: string;
     price: number;
-    imageURL: string;
+    imageURL?: string;
     screen_diagonal: number;
     camera_mp: number;
     number_of_cores: number;

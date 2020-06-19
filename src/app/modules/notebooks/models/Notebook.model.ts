@@ -1,9 +1,9 @@
 export interface NotebookModel {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   price: number;
-  imageURL: string;
+  imageURL?: string;
   screen_diagonal: number;
   processor: string;
   ram: number;

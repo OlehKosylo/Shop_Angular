@@ -5,4 +5,8 @@
   {{phone.description}}
 
   <a (click)="navigate(phone.id)">Open</a>
+
+  <br>
+
+  <a *ngIf="appService.adminStatus" (click)="deletePhone(+phone.id)">Delete</a>
 </div>
