@@ -7,6 +7,7 @@ import {StripeService} from '../../../Stripe/stripe.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RxwebValidators} from '@rxweb/reactive-form-validators';
 import * as firebase from 'firebase';
+import {MainService} from '../../../main/services/main.service';
 
 @Component({
   selector: 'app-phone',
@@ -23,14 +24,16 @@ export class NotebookComponent implements OnInit {
   notebook: NotebookModel;
 
   statusBuyComponent = true;
+  statusBasketComponent = true;
   statusUpdateForm = false;
 
-  updateForma: FormGroup;
+  public updateForma: FormGroup;
   public orderForma: FormGroup;
+  count = 1;
 
   constructor(public appService: AppService, private route: ActivatedRoute,
               private stripeService: StripeService, private formBuilder: FormBuilder,
-              public notebookService: NotebookService) {
+              public notebookService: NotebookService, private mainService: MainService) {
     this.orderForma = formBuilder.group({
       whereSend: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(75)]],
       count: []
@@ -70,7 +73,7 @@ export class NotebookComponent implements OnInit {
       count: +count || 1,
       price: this.notebook.price * (count || 1),
       where_send: whereSend
-    });
+    }, false, false);
   }
 
   update() {
@@ -118,6 +121,20 @@ export class NotebookComponent implements OnInit {
     );
   }
 
+  pushToBasket() {
+    let checkCoincidence = false;
+    for (let i = 0; i < this.mainService.basketArray.length; i++) {
+      if (this.mainService.basketArray[i].id === this.notebook.id) {
+        checkCoincidence = true;
+      }
+    }
+
+    if (!checkCoincidence) {
+      this.mainService.basketArray.push({...this.notebook, count: this.count});
+    }
+
+  }
+
   onFileSelected(event) {
     this.file = event.target.files[0];
     this.metaData = {contentType: this.file.type};
@@ -130,6 +147,10 @@ export class NotebookComponent implements OnInit {
 
   setStatusUpdateForm(value) {
     this.statusUpdateForm = value;
+  }
+
+  setStatusBasketComponent(value) {
+    this.statusBasketComponent = value;
   }
 }
 

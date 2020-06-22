@@ -44,4 +44,48 @@ export class NotebookService {
     this.appService.setRequestStatus(true);
     return this.http.put(`http://localhost:3333/notebooks`, {...notebook});
   }
+
+  sortByASC() {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewNotebookModel[]>('http://localhost:3333/notebooks/sort/ASC?type_of_goods=Notebooks').subscribe(
+      res => {
+        console.log(res);
+        this.notebooksArray = res;
+        this.appService.setRequestStatus(false);
+      },
+      err => {
+        this.appService.setRequestStatus(false);
+        alert(err.error.message);
+      }
+    );
+  }
+
+  sortByDESC() {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewNotebookModel[]>('http://localhost:3333/notebooks/sort/DESC?type_of_goods=Notebooks').subscribe(
+      res => {
+        this.notebooksArray = res;
+        this.appService.setRequestStatus(false);
+      },
+      err => {
+        this.appService.setRequestStatus(false);
+        alert(err.error.message);
+      }
+    );
+  }
+
+  sortByPrice(price: number) {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewNotebookModel[]>(`http://localhost:3333/notebooks/sort/Price?type_of_goods=Notebooks&price=${price}`)
+      .subscribe(
+        res => {
+          this.notebooksArray = res;
+          this.appService.setRequestStatus(false);
+        },
+        err => {
+          this.appService.setRequestStatus(false);
+          alert(err.error.message);
+        }
+      );
+  }
 }

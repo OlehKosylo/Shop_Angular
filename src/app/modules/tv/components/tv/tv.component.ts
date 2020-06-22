@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RxwebValidators} from '@rxweb/reactive-form-validators';
 import * as firebase from 'firebase';
 import {TvService} from '../../services/tv.service';
+import {MainService} from '../../../main/services/main.service';
 
 @Component({
   selector: 'app-phone',
@@ -21,16 +22,18 @@ export class TvComponent implements OnInit {
   uploadTask: firebase.storage.UploadTask;
 
   statusBuyComponent = true;
+  statusBasketComponent = true;
   statusUpdateForm = false;
 
   updateForma: FormGroup;
   tv: TVModel;
+  count = 1;
 
   public orderForma: FormGroup;
 
   constructor(public appService: AppService, private route: ActivatedRoute,
               private stripeService: StripeService, private formBuilder: FormBuilder,
-              private tvService: TvService) {
+              private tvService: TvService, private mainService: MainService) {
     this.orderForma = formBuilder.group({
       whereSend: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(75)]],
       count: []
@@ -69,7 +72,7 @@ export class TvComponent implements OnInit {
       count: +count || 1,
       price: this.tv.price * (count || 1),
       where_send: whereSend
-    });
+    }, false, false);
   }
 
   update() {
@@ -116,6 +119,19 @@ export class TvComponent implements OnInit {
     );
   }
 
+  pushToBasket() {
+    let checkCoincidence = false;
+    for (let i = 0; i < this.mainService.basketArray.length; i++) {
+      if (this.mainService.basketArray[i].id === this.tv.id) {
+        checkCoincidence = true;
+      }
+    }
+
+    if (!checkCoincidence) {
+      this.mainService.basketArray.push({...this.tv, count: this.count});
+    }
+  }
+
   onFileSelected(event) {
     this.file = event.target.files[0];
     this.metaData = {contentType: this.file.type};
@@ -128,6 +144,10 @@ export class TvComponent implements OnInit {
 
   setStatusUpdateForm(value) {
     this.statusUpdateForm = value;
+  }
+
+  setStatusBasketComponent(value) {
+    this.statusBasketComponent = value;
   }
 }
 

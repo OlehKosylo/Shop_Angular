@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../services/app.service';
-import {PreViewTVModel} from '../../models/preViewTV.model';
 import {ActivatedRoute} from '@angular/router';
 import {TvService} from '../../services/tv.service';
 
@@ -10,6 +9,8 @@ import {TvService} from '../../services/tv.service';
   styleUrls: ['./tv-container.component.css']
 })
 export class TvContainerComponent implements OnInit {
+
+  price: number;
 
   constructor(public appService: AppService, private route: ActivatedRoute, public tvService: TvService) {
   }
@@ -23,8 +24,18 @@ export class TvContainerComponent implements OnInit {
         setTimeout(() => this.appService.setRequestStatus(false)),
           alert(err.error.message))
     );
-
   }
 
+  sortByASC() {
+    this.tvService.sortByASC();
+  }
+
+  sortByDESC() {
+    this.tvService.sortByDESC();
+  }
+
+  sortByPrice() {
+    this.tvService.sortByPrice(this.price);
+  }
 }
 

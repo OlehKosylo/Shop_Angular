@@ -4,11 +4,14 @@ import {PreViewPhoneModel} from '../models/preViewPhone.model';
 import {Observable} from 'rxjs';
 import {PhoneModel} from '../models/Phone.model';
 import {AppService} from '../../../services/app.service';
+import {PreViewNotebookModel} from '../../notebooks/models/preViewNotebook.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PhoneService {
+
+
 
   phonesArray: PreViewPhoneModel[] = [];
 
@@ -43,5 +46,48 @@ export class PhoneService {
   updatePhone(phone: PhoneModel) {
     this.appService.setRequestStatus(true);
     return this.http.put(`http://localhost:3333/phones`, {...phone});
+  }
+
+  sortByASC() {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewNotebookModel[]>('http://localhost:3333/phones/sort/ASC?type_of_goods=Phones').subscribe(
+      res => {
+        this.phonesArray = res;
+        this.appService.setRequestStatus(false);
+      },
+      err => {
+        this.appService.setRequestStatus(false);
+        alert(err.error.message);
+      }
+    );
+  }
+
+  sortByDESC() {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewNotebookModel[]>('http://localhost:3333/phones/sort/DESC?type_of_goods=Phones').subscribe(
+      res => {
+        this.phonesArray = res;
+        this.appService.setRequestStatus(false);
+      },
+      err => {
+        this.appService.setRequestStatus(false);
+        alert(err.error.message);
+      }
+    );
+  }
+
+  sortByPrice(price: number) {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewNotebookModel[]>(`http://localhost:3333/phones/sort/Price?type_of_goods=Phones&price=${price}`)
+      .subscribe(
+        res => {
+          this.phonesArray = res;
+          this.appService.setRequestStatus(false);
+        },
+        err => {
+          this.appService.setRequestStatus(false);
+          alert(err.error.message);
+        }
+      );
   }
 }

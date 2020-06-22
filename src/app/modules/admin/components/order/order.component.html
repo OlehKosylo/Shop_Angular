@@ -1,0 +1,28 @@
+<div>
+  id:  {{order.id}}
+  user_id: {{order.user_id}}
+  good_type: {{order.good_type}}
+  good_id: {{order.good_id}}
+  count: {{order.count}}
+  price: {{order.price}}
+  where_send: {{order.where_send}}
+  sending_status: {{order.sending_status === 0 ? 'Didnt send' : 'Sent'}}
+  orderedAt: {{order.orderedAt}}
+
+  <div *ngIf="good">
+    <div *ngFor="let key of goodKeyArray">
+      <span>{{key}}: </span>
+      <span>{{good[key]}}</span>
+    </div>
+  </div>
+  <button *ngIf="order.sending_status === 0" (click)="sendGoods(order.id)">Send goods</button>
+
+  <button (click)="good ? closeGoodInfo() :getGoodById(order.good_id, order.good_type)">
+    <span *ngIf="!good">
+         Get full info about good
+    </span>
+    <span *ngIf="good">
+         Close
+  </span>
+  </button>
+</div>

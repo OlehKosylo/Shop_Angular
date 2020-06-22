@@ -4,7 +4,7 @@ import {PreViewTVModel} from '../models/preViewTV.model';
 import {Observable} from 'rxjs';
 import {TVModel} from '../models/TV.model';
 import {AppService} from '../../../services/app.service';
-import {PhoneModel} from '../../phones/models/Phone.model';
+import {PreViewNotebookModel} from '../../notebooks/models/preViewNotebook.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +42,49 @@ export class TvService {
   updateTV(tv: TVModel) {
     this.appService.setRequestStatus(true);
     return this.http.put(`http://localhost:3333/tv`, {...tv});
+  }
+
+  sortByASC() {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewTVModel[]>('http://localhost:3333/tv/sort/ASC?type_of_goods=TV').subscribe(
+      res => {
+        console.log(res);
+        this.tvsArray = res;
+        this.appService.setRequestStatus(false);
+      },
+      err => {
+        this.appService.setRequestStatus(false);
+        alert(err.error.message);
+      }
+    );
+  }
+
+  sortByDESC() {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewTVModel[]>('http://localhost:3333/tv/sort/DESC?type_of_goods=TV').subscribe(
+      res => {
+        this.tvsArray = res;
+        this.appService.setRequestStatus(false);
+      },
+      err => {
+        this.appService.setRequestStatus(false);
+        alert(err.error.message);
+      }
+    );
+  }
+
+  sortByPrice(price: number) {
+    this.appService.setRequestStatus(true);
+    return this.http.get<PreViewTVModel[]>(`http://localhost:3333/tv/sort/Price?type_of_goods=TV&price=${price}`)
+      .subscribe(
+        res => {
+          this.tvsArray = res;
+          this.appService.setRequestStatus(false);
+        },
+        err => {
+          this.appService.setRequestStatus(false);
+          alert(err.error.message);
+        }
+      );
   }
 }

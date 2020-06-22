@@ -13,6 +13,8 @@
               class="glyphicon glyphicon-log-in"></span>
               Login</a></li>
 
+            <li *ngIf="appService.userIn == true"><a (click)="navigate('basket')">Basket</a></li>
+
             <li *ngIf="appService.userIn == true"><a (click)="navigate('profile')">Profile</a></li>
 
             <li *ngIf="appService.userIn == true && appService.adminStatus">

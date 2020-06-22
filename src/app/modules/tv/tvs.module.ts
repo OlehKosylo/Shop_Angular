@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TvsRoutingModule } from './tvs-routing.module';
 import { TvComponent } from './components/tv/tv.component';
 import { TvContainerComponent } from './components/tv-container/tv-container.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MainModule} from '../main/main.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PreViewTvComponent} from './components/pre-view-tv/pre-view-tv.component';
 
 
@@ -12,6 +11,7 @@ import {PreViewTvComponent} from './components/pre-view-tv/pre-view-tv.component
   declarations: [TvComponent, TvContainerComponent, PreViewTvComponent],
   imports: [
     CommonModule,
+    FormsModule,
     TvsRoutingModule,
     ReactiveFormsModule
   ],

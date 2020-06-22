@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../../../services/app.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NotebookService} from '../../services/notebook.service';
 
 @Component({
@@ -10,7 +10,10 @@ import {NotebookService} from '../../services/notebook.service';
 })
 export class NotebookContainerComponent implements OnInit {
 
-  constructor(public appService: AppService, private route: ActivatedRoute, public notebookService: NotebookService) {
+  price: number;
+
+  constructor(public appService: AppService, private route: ActivatedRoute,
+              public notebookService: NotebookService) {
   }
 
   ngOnInit(): void {
@@ -22,8 +25,19 @@ export class NotebookContainerComponent implements OnInit {
         setTimeout(() => this.appService.setRequestStatus(false)),
           alert(err.error.message))
     );
-
   }
 
+
+  sortByASC() {
+    this.notebookService.sortByASC();
+  }
+
+  sortByDESC() {
+    this.notebookService.sortByDESC();
+  }
+
+  sortByPrice() {
+    this.notebookService.sortByPrice(this.price);
+  }
 }
 

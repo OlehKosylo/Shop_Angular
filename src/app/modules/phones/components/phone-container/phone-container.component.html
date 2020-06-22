@@ -2,6 +2,12 @@
 
   <app-pre-view-phone [phonesArray]="phoneService.phonesArray"></app-pre-view-phone>
 
+  <button (click)="sortByASC()">Sort by ASC</button>
+  <button (click)="sortByDESC()">Sort by desc</button>
+
+  <br>
+  <input type="text" [(ngModel)]="price">
+  <button (click)="sortByPrice()" [disabled]="price < 1">Sort by price</button>
 </div>
 
 

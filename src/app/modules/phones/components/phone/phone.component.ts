@@ -7,6 +7,7 @@ import {StripeService} from '../../../Stripe/stripe.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RxwebValidators} from '@rxweb/reactive-form-validators';
 import * as firebase from 'firebase';
+import {MainService} from '../../../main/services/main.service';
 
 
 @Component({
@@ -23,15 +24,18 @@ export class PhoneComponent implements OnInit {
 
   statusBuyComponent = true;
   statusUpdateForm = false;
+  statusBasketComponent = true;
 
   updateForma: FormGroup;
   phone: PhoneModel;
+  count = 1;
+
 
   public orderForma: FormGroup;
 
   constructor(private phoneService: PhoneService, public appService: AppService,
               private route: ActivatedRoute, private stripeService: StripeService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, private mainService: MainService) {
     this.orderForma = formBuilder.group({
       whereSend: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(75)]],
       count: []
@@ -68,7 +72,7 @@ export class PhoneComponent implements OnInit {
       count: +count || 1,
       price: this.phone.price * (count || 1),
       where_send: whereSend
-    });
+    }, false, false);
   }
 
 
@@ -116,6 +120,19 @@ export class PhoneComponent implements OnInit {
     );
   }
 
+  pushToBasket() {
+    let checkCoincidence = false;
+    for (let i = 0; i < this.mainService.basketArray.length; i++) {
+      if (this.mainService.basketArray[i].id === this.phone.id) {
+        checkCoincidence = true;
+      }
+    }
+
+    if (!checkCoincidence) {
+      this.mainService.basketArray.push({...this.phone, count: this.count});
+    }
+  }
+
   onFileSelected(event) {
     this.file = event.target.files[0];
     this.metaData = {contentType: this.file.type};
@@ -129,5 +146,10 @@ export class PhoneComponent implements OnInit {
   setStatusUpdateForm(value) {
     this.statusUpdateForm = value;
   }
+
+  setStatusBasketComponent(value) {
+    this.statusBasketComponent = value;
+  }
+
 }
 

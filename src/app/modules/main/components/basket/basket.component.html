@@ -1,0 +1,28 @@
+<div>
+  <div *ngIf="mainService.basketArray.length > 0">
+    Price: {{mainService.price}}
+    <div *ngFor="let array of mainService.arrayBasketKeys">
+      <div *ngFor="let KeyValueArray of array">
+        <div *ngFor="let item of KeyValueArray; let i = index">
+          <span *ngIf="i % 2 === 0">{{item}}: </span>
+          <span *ngIf="i % 2 != 0">{{item}} </span>
+        </div>
+      </div>
+      <button (click)="deleteOfBasket(array[0],array[3])">Delete</button>
+    </div>
+
+    <button (click)="setStatusBuy()">
+      <span *ngIf="statusBuy">Buy</span>
+      <span *ngIf="!statusBuy">Back</span>
+    </button>
+
+    <div *ngIf="!statusBuy">
+      <input type="text" [(ngModel)]="adress">
+      <button (click)="buyOfBasket()">OK</button>
+    </div>
+  </div>
+
+  <div *ngIf="mainService.basketArray.length === 0">
+    Basket is empty
+  </div>
+</div>

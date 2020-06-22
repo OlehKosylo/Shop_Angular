@@ -10,6 +10,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class PhoneContainerComponent implements OnInit {
 
+  price: number;
+
   constructor(public phoneService: PhoneService, public appService: AppService, private route: ActivatedRoute) {
   }
 
@@ -22,8 +24,18 @@ export class PhoneContainerComponent implements OnInit {
         setTimeout(() => this.appService.setRequestStatus(false)),
           alert(err.error.message))
     );
-
   }
 
+  sortByASC() {
+    this.phoneService.sortByASC();
+  }
+
+  sortByDESC() {
+    this.phoneService.sortByDESC();
+  }
+
+  sortByPrice() {
+    this.phoneService.sortByPrice(this.price);
+  }
 }
 

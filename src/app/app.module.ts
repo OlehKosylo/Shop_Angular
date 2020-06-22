@@ -10,12 +10,15 @@ import {Interceptor} from './interceptor.interceptor';
 import {CommonModule} from '@angular/common';
 import {PhonesResolverService} from './modules/phones/services/resolvers/phones.resolver.service';
 import {PhoneResolverService} from './modules/phones/services/resolvers/phone.resolver.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NotebookResolverService} from './modules/notebooks/services/resolvers/notebook.resolver.service';
 import {NotebooksResolverService} from './modules/notebooks/services/resolvers/notebooks.resolver.service';
 import {TvsResolverService} from './modules/tv/services/resolvers/tvs.resolver.service';
 import {TvResolverService} from './modules/tv/services/resolvers/tv.resolver.service';
 import {GoodsResolverService} from './modules/main/services/resolvers/goods.resolver.service';
+import * as firebase from 'firebase';
+import {environment} from '../environments/environment';
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
